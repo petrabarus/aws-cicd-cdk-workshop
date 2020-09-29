@@ -1,0 +1,19 @@
+baseURL = "http://example.org/"
+languageCode = "id-id"
+title = "CI/CD using AWS CDK Workshop"
+
+# Change the default theme to be use when building the site with Hugo
+theme = "hugo-theme-learn"
+
+DefaultContentLanguage = "en"
+uglyURLs = true
+
+[params]
+themeVariant = "blue"
+
+# For search functionality
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
+
+[deployment]
+uglyURLs = true
