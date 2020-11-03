@@ -9,7 +9,7 @@ DefaultContentLanguage = "en"
 uglyURLs = true
 
 [params]
-themeVariant = "blue"
+themeVariant = "mine"
 
 # For search functionality
 [outputs]
