@@ -2,7 +2,6 @@
 import 'source-map-support/register';
 
 import { App as AmplifyApp, GitHubSourceCodeProvider } from '@aws-cdk/aws-amplify';
-import { BuildSpec } from '@aws-cdk/aws-codebuild';
 import { App, Construct, SecretValue, Stack, StackProps } from '@aws-cdk/core';
 
 class WorkshopWebStack extends Stack {
@@ -12,13 +11,10 @@ class WorkshopWebStack extends Stack {
         const codeProvider = new GitHubSourceCodeProvider({
             owner: 'petrabarus',
             repository: 'aws-cicd-cdk-workshop',
-            oauthToken: oauthToken
+            oauthToken: oauthToken,
         });
-        const buildspec = BuildSpec.fromSourceFilename('buildspec.yml');
-
         const app = new AmplifyApp(this, 'AWS CI/CD Workshop', {
             sourceCodeProvider: codeProvider,
-            buildSpec: buildspec
         });
         app.addBranch('main');
     }
