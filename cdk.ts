@@ -20,7 +20,7 @@ class WorkshopWebStack extends Stack {
             sourceCodeProvider: codeProvider,
             buildSpec: buildspec
         });
-        app.addBranch('master');
+        app.addBranch('main');
     }
 }
 
