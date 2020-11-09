@@ -1,0 +1,9 @@
+version: '1.0'
+frontend:
+  phases:
+    build:
+      commands:
+      - echo "TEST"
+  artifacts:
+    baseDirectory: 'public'
+    files: '**/*'

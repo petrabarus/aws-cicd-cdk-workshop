@@ -10,4 +10,4 @@ pre = "<b>1. </b>"
 
 # Setting Up Environment
 
-Lorem Ipsum.
+In this chapter we will set up environment by creating a new Cloud9 Development Environment.
