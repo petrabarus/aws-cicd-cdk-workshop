@@ -16,7 +16,8 @@ frontend:
       - ls -la      
     build:
       commands:
-      - hugo -v
+      - hugo
   artifacts:
-    baseDirectory: 'public'
-    files: '**/*'
+    baseDirectory: public
+    files:
+        - '**/*'

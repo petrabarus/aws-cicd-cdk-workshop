@@ -8,14 +8,17 @@ class WorkshopWebStack extends Stack {
     constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props);
         const oauthToken = SecretValue.secretsManager('GITHUB_OAUTH_TOKEN');
+
         const codeProvider = new GitHubSourceCodeProvider({
             owner: 'petrabarus',
             repository: 'aws-cicd-cdk-workshop',
             oauthToken: oauthToken,
         });
+
         const app = new AmplifyApp(this, 'AWS CI/CD Workshop', {
             sourceCodeProvider: codeProvider,
         });
+        
         app.addBranch('main');
     }
 }
