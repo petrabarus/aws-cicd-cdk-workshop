@@ -22,12 +22,11 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/2-workshop/1-creating-new-cdk-application.html</guid>
-      <description>Now we are creating a new directory for the application.
-mkdir myapp &amp;amp;&amp;amp; cd myapp To initiate the CDK application, execute command below.
-cdk init app --language typescript Run the command below in a new terminal to watch modification to Typescript files.
-npm run watch To see the generate CloudFormation template, execute command below.
-cdk synth To deploy the CDK application, execute command below.
-cdk deploy </description>
+      <description>STEP 1 Create a new directory for the application.
+mkdir myapp &amp;amp;&amp;amp; cd myapp STEP 2 initiate a new CDK application by executing command below.
+cdk init app --language typescript STEP 3 Create a new terminal by clicking on the green cross, and click New Terminal.
+STEP 4 In the new terminal, go to our app by executing this command.
+cd myapp STEP 5 We need to compile our Typescript code to Javascript everytime we create or update a Typescript file.</description>
     </item>
     
     <item>
@@ -50,9 +49,9 @@ STEP 4 In the Environment settings, choose below configuration
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/2-workshop/2-creating-code-commit-repository-copy.html</guid>
-      <description>To install AWS CodeCommit constructs for CDK, execute command below.
-npm i @aws-cdk/aws-codecommit Overwrite file lib/myapp-stack.ts with the follow code.
-import * as cdk from &amp;#39;@aws-cdk/core&amp;#39;; import * as codecommit from &amp;#39;@aws-cdk/aws-codecommit&amp;#39;; export class MyappStack extends cdk.Stack { private codeRepository: codecommit.Repository; constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) { super(scope, id, props); this.createCodeCommitRepository(); this.createECSApplication(); this.createECRRepository(); this.createPipeline(); } createCodeCommitRepository() { this.codeRepository = new codecommit.Repository(this, &amp;#39;CodeRepository&amp;#39;, { repositoryName: &amp;#39;MyRepository&amp;#39; }); } } Now we can deploy the CDK application.</description>
+      <description>In this part, we are going to create an AWS CodeCommit repository. AWS CodeCommit is a fully-managed source control service that hosts secure Git-based repositories. It makes it easy for teams to collaborate on code in a secure and highly scalable ecosystem.
+Provision AWS CodeCommit Repository STEP 1 Install AWS CodeCommit constructs for CDK by executing command below in our project directory.
+npm i @aws-cdk/aws-codecommit STEP 2 We are going to provision a new CodeCommit repository using CDK.</description>
     </item>
     
     <item>
