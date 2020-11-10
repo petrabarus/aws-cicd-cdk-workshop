@@ -9,24 +9,24 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>2. Environment Check and Set Up :: CI/CD using AWS CDK Workshop</title>
+    <title>2. Deleting Cloud9 Environment :: CI/CD using AWS CDK Workshop</title>
 
     
-    <link href="/css/nucleus.css?1604998249" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1604998249" rel="stylesheet">
-    <link href="/css/hybrid.css?1604998249" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1604998249" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1604998249" rel="stylesheet">
-    <link href="/css/auto-complete.css?1604998249" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1604998249" rel="stylesheet">
-    <link href="/css/theme.css?1604998249" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1604998249" rel="stylesheet">
+    <link href="/css/nucleus.css?1604998361" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1604998361" rel="stylesheet">
+    <link href="/css/hybrid.css?1604998361" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1604998361" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1604998361" rel="stylesheet">
+    <link href="/css/auto-complete.css?1604998361" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1604998361" rel="stylesheet">
+    <link href="/css/theme.css?1604998361" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1604998361" rel="stylesheet">
     
-    <link href="/css/theme-mine.css?1604998249" rel="stylesheet">
+    <link href="/css/theme-mine.css?1604998361" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1604998249"></script>
+    <script src="/js/jquery-3.3.1.min.js?1604998361"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/1-setting-up-environment/2-environment-check-and-setup.html">
+  <body class="" data-url="/3-cleaning-up/2-deleting-cloud9-environment.html">
     <nav id="sidebar" class="">
 
 
@@ -52,14 +52,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1604998249"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1604998249"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1604998361"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1604998361"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1604998249"></script>
+<script type="text/javascript" src="/js/search.js?1604998361"></script>
 
     
   </div>
@@ -78,7 +78,7 @@
   
     
     <li data-nav-id="/1-setting-up-environment.html" title="Setting Up Environment" class="dd-item 
-        parent
+        
         
         
         ">
@@ -125,7 +125,7 @@
  
   
     
-      <li data-nav-id="/1-setting-up-environment/2-environment-check-and-setup.html" title="2. Environment Check and Set Up" class="dd-item active">
+      <li data-nav-id="/1-setting-up-environment/2-environment-check-and-setup.html" title="2. Environment Check and Set Up" class="dd-item ">
         <a href="/1-setting-up-environment/2-environment-check-and-setup.html">
         2. Environment Check and Set Up
         
@@ -314,7 +314,7 @@
   
     
     <li data-nav-id="/3-cleaning-up.html" title="Cleaning Up" class="dd-item 
-        
+        parent
         
         
         ">
@@ -361,7 +361,7 @@
  
   
     
-      <li data-nav-id="/3-cleaning-up/2-deleting-cloud9-environment.html" title="2. Deleting Cloud9 Environment" class="dd-item ">
+      <li data-nav-id="/3-cleaning-up/2-deleting-cloud9-environment.html" title="2. Deleting Cloud9 Environment" class="dd-item active">
         <a href="/3-cleaning-up/2-deleting-cloud9-environment.html">
         2. Deleting Cloud9 Environment
         
@@ -435,7 +435,7 @@
             
           
           
-            <a href='/'></a> > <a href='/1-setting-up-environment.html'>Setting Up Environment</a> > 2. Environment Check and Set Up
+            <a href='/'></a> > <a href='/3-cleaning-up.html'>Cleaning Up</a> > 2. Deleting Cloud9 Environment
           
         
           
@@ -448,13 +448,7 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#check-npm-version">Check NPM version</a></li>
-    <li><a href="#check-and-update-cdk">Check and Update CDK</a></li>
-    <li><a href="#installing-git-helper-for-codecommit">Installing Git helper for CodeCommit</a></li>
-  </ul>
-</nav>
+<nav id="TableOfContents"></nav>
     </div>
 </div>
 
@@ -470,35 +464,14 @@
           
             <h1>
               
-              2. Environment Check and Set Up
+              2. Deleting Cloud9 Environment
             </h1>
           
 
         
 
 
-<h2 id="check-npm-version">Check NPM version</h2>
-<p>To check NPM version execute command below in the terminal.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ npm --version
-</code></pre></div><p>The output should look like this.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">6.14.6
-</code></pre></div><h2 id="check-and-update-cdk">Check and Update CDK</h2>
-<p>To check CDK version execute command below in the terminal.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cdk --version
-</code></pre></div><p>The output should look like this.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">1.70.0 (build c145314)
-</code></pre></div><p>To update the CDK version to latest, execute command below in the terminal.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm i -g -f aws-cdk@latest
-</code></pre></div><p>To initiate the CDK bootstrap asset, execute command below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cdk bootstrap
-</code></pre></div><h2 id="installing-git-helper-for-codecommit">Installing Git helper for CodeCommit</h2>
-<p>Check whether PIP is already installed in the system, execute command below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip --version
-</code></pre></div><p>The output should look like below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">pip 9.0.3 from /usr/lib/python3.6/dist-packages (python 3.6)
-</code></pre></div><p>To install the git helper for CodeCommit, execute command below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip install git-remote-codecommit
-</code></pre></div>
+
 
 <footer class="footline">
 	
@@ -567,7 +540,6 @@
             
                 
                     
-                    
                 
                 
 
@@ -586,9 +558,6 @@
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -730,6 +699,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -754,10 +724,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/1-setting-up-environment/1-setting-up-cloud9.html" title="1. Setting Up Cloud9"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/3-cleaning-up/1-cleaning-cdk-resources.html" title="1. Cleaning Provisioned Resources"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/2-workshop.html" title="Workshop" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/1-setting-up-environment.html" title="Setting Up Environment" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -767,19 +737,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1604998249"></script>
-    <script src="/js/perfect-scrollbar.min.js?1604998249"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1604998249"></script>
-    <script src="/js/jquery.sticky.js?1604998249"></script>
-    <script src="/js/featherlight.min.js?1604998249"></script>
-    <script src="/js/highlight.pack.js?1604998249"></script>
+    <script src="/js/clipboard.min.js?1604998361"></script>
+    <script src="/js/perfect-scrollbar.min.js?1604998361"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1604998361"></script>
+    <script src="/js/jquery.sticky.js?1604998361"></script>
+    <script src="/js/featherlight.min.js?1604998361"></script>
+    <script src="/js/highlight.pack.js?1604998361"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1604998249"></script>
-    <script src="/js/learn.js?1604998249"></script>
-    <script src="/js/hugo-learn.js?1604998249"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1604998361"></script>
+    <script src="/js/learn.js?1604998361"></script>
+    <script src="/js/hugo-learn.js?1604998361"></script>
     
         
-            <script src="/mermaid/mermaid.js?1604998249"></script>
+            <script src="/mermaid/mermaid.js?1604998361"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });

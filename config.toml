@@ -4,6 +4,7 @@ title = "CI/CD using AWS CDK Workshop"
 
 # Change the default theme to be use when building the site with Hugo
 theme = "hugo-theme-learn"
+publishDir = "docs"
 
 DefaultContentLanguage = "en"
 uglyURLs = true

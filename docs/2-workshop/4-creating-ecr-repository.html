@@ -9,24 +9,24 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Categories :: CI/CD using AWS CDK Workshop</title>
+    <title>4. Creating ECS Cluster :: CI/CD using AWS CDK Workshop</title>
 
     
-    <link href="/css/nucleus.css?1604998249" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1604998249" rel="stylesheet">
-    <link href="/css/hybrid.css?1604998249" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1604998249" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1604998249" rel="stylesheet">
-    <link href="/css/auto-complete.css?1604998249" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1604998249" rel="stylesheet">
-    <link href="/css/theme.css?1604998249" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1604998249" rel="stylesheet">
+    <link href="/css/nucleus.css?1604998361" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1604998361" rel="stylesheet">
+    <link href="/css/hybrid.css?1604998361" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1604998361" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1604998361" rel="stylesheet">
+    <link href="/css/auto-complete.css?1604998361" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1604998361" rel="stylesheet">
+    <link href="/css/theme.css?1604998361" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1604998361" rel="stylesheet">
     
-    <link href="/css/theme-mine.css?1604998249" rel="stylesheet">
+    <link href="/css/theme-mine.css?1604998361" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1604998249"></script>
+    <script src="/js/jquery-3.3.1.min.js?1604998361"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/categories.html">
+  <body class="" data-url="/2-workshop/4-creating-ecr-repository.html">
     <nav id="sidebar" class="">
 
 
@@ -52,14 +52,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1604998249"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1604998249"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1604998361"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1604998361"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1604998249"></script>
+<script type="text/javascript" src="/js/search.js?1604998361"></script>
 
     
   </div>
@@ -154,7 +154,7 @@
   
     
     <li data-nav-id="/2-workshop.html" title="Workshop" class="dd-item 
-        
+        parent
         
         
         ">
@@ -243,7 +243,7 @@
  
   
     
-      <li data-nav-id="/2-workshop/4-creating-ecr-repository.html" title="4. Creating ECS Cluster" class="dd-item ">
+      <li data-nav-id="/2-workshop/4-creating-ecr-repository.html" title="4. Creating ECS Cluster" class="dd-item active">
         <a href="/2-workshop/4-creating-ecr-repository.html">
         4. Creating ECS Cluster
         
@@ -431,7 +431,13 @@
             
           
           
-            <a href='/'></a> > Categories
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/2-workshop.html'>Workshop</a> > 4. Creating ECS Cluster
+          
+        
           
         
           
@@ -442,7 +448,7 @@
                 
                     <div class="progress">
     <div class="wrapper">
-
+<nav id="TableOfContents"></nav>
     </div>
 </div>
 
@@ -458,24 +464,57 @@
           
             <h1>
               
-                category ::
-              
-              Categories
+              4. Creating ECS Cluster
             </h1>
           
 
         
 
 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm i @aws-cdk/aws-ecr
+</code></pre></div><p>Overwrite file <code>myapp-stack.ts</code> with the code below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">cdk</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@aws-cdk/core&#39;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">codecommit</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@aws-cdk/aws-codecommit&#39;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">ecs</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@aws-cdk/aws-ecs&#39;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">ecsPatterns</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@aws-cdk/aws-ecs-patterns&#39;</span>;
 
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyappStack</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Stack</span> {
+  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">codeRepository</span>: <span style="color:#66d9ef">codecommit.Repository</span>;
+  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">cluster</span>: <span style="color:#66d9ef">ecs.Cluster</span>;
+  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">service</span>: <span style="color:#66d9ef">ecs.IService</span>;
 
+  <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">scope</span>: <span style="color:#66d9ef">cdk.Construct</span>, <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">props?</span>: <span style="color:#66d9ef">cdk.StackProps</span>) {
+    <span style="color:#66d9ef">super</span>(<span style="color:#a6e22e">scope</span>, <span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">props</span>);
 
-<ul>
-	
-</ul>
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">createCodeCommitRepository</span>();
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">createECSApplication</span>();
+  }
+  
+  <span style="color:#a6e22e">createCodeCommitRepository() {</span>
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">codeRepository</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">codecommit</span>.<span style="color:#a6e22e">Repository</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;Repository&#39;</span>, {
+      <span style="color:#a6e22e">repositoryName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;MyRepository&#39;</span>
+    });
+  }
+  
+  <span style="color:#a6e22e">createECSApplication() {</span>
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cluster</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ecs</span>.<span style="color:#a6e22e">Cluster</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;Cluster&#39;</span>);
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fargateService</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ecsPatterns</span>.<span style="color:#a6e22e">ApplicationLoadBalancedFargateService</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;Service&#39;</span>, {
+      <span style="color:#a6e22e">cluster</span>: <span style="color:#66d9ef">this.cluster</span>,
+      <span style="color:#a6e22e">memoryLimitMiB</span>: <span style="color:#66d9ef">1024</span>,
+      <span style="color:#a6e22e">cpu</span>: <span style="color:#66d9ef">512</span>,
+      <span style="color:#a6e22e">taskImageOptions</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">image</span>: <span style="color:#66d9ef">ecs.ContainerImage.fromAsset</span>(<span style="color:#e6db74">&#39;.&#39;</span>),
+        <span style="color:#a6e22e">containerName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;web&#39;</span>,
+      },
+    });
+    
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">service</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fargateService</span>.<span style="color:#a6e22e">service</span>;
+  }
+}
+</code></pre></div><pre><code>cdk deploy
+</code></pre>
 
-
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
@@ -622,6 +661,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -637,6 +677,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -725,8 +768,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/2-workshop/3-creating-ecs-cluster.html" title="3. Creating ECS Cluster"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/1-setting-up-environment.html" title="Setting Up Environment" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/2-workshop/5-creating-build-pipeline.html" title="5. Creating Build Pipeline" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -736,19 +781,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1604998249"></script>
-    <script src="/js/perfect-scrollbar.min.js?1604998249"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1604998249"></script>
-    <script src="/js/jquery.sticky.js?1604998249"></script>
-    <script src="/js/featherlight.min.js?1604998249"></script>
-    <script src="/js/highlight.pack.js?1604998249"></script>
+    <script src="/js/clipboard.min.js?1604998361"></script>
+    <script src="/js/perfect-scrollbar.min.js?1604998361"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1604998361"></script>
+    <script src="/js/jquery.sticky.js?1604998361"></script>
+    <script src="/js/featherlight.min.js?1604998361"></script>
+    <script src="/js/highlight.pack.js?1604998361"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1604998249"></script>
-    <script src="/js/learn.js?1604998249"></script>
-    <script src="/js/hugo-learn.js?1604998249"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1604998361"></script>
+    <script src="/js/learn.js?1604998361"></script>
+    <script src="/js/hugo-learn.js?1604998361"></script>
     
         
-            <script src="/mermaid/mermaid.js?1604998249"></script>
+            <script src="/mermaid/mermaid.js?1604998361"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });
@@ -758,3 +803,4 @@
 
   </body>
 </html>
+
