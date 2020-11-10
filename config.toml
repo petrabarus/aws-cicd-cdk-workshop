@@ -1,4 +1,4 @@
-baseURL = "http://example.org/"
+baseURL = "https://petrabarus.github.io/aws-cicd-cdk-workshop/"
 languageCode = "id-id"
 title = "CI/CD using AWS CDK Workshop"
 

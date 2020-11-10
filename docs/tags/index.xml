@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on CI/CD using AWS CDK Workshop</title>
-    <link>http://example.org/tags.html</link>
+    <link>https://petrabarus.github.io/aws-cicd-cdk-workshop/tags.html</link>
     <description>Recent content in Tags on CI/CD using AWS CDK Workshop</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>id-id</language><atom:link href="http://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>id-id</language><atom:link href="https://petrabarus.github.io/aws-cicd-cdk-workshop/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CI/CD using AWS CDK Workshop</title>
-    <link>http://example.org/</link>
+    <link>https://petrabarus.github.io/aws-cicd-cdk-workshop/</link>
     <description>Recent content on CI/CD using AWS CDK Workshop</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>id-id</language>
-    <lastBuildDate>Tue, 03 Nov 2020 16:12:52 +0700</lastBuildDate><atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 03 Nov 2020 16:12:52 +0700</lastBuildDate><atom:link href="https://petrabarus.github.io/aws-cicd-cdk-workshop/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>1. Cleaning Provisioned Resources</title>
-      <link>http://example.org/3-cleaning-up/1-cleaning-cdk-resources.html</link>
+      <link>https://petrabarus.github.io/aws-cicd-cdk-workshop/3-cleaning-up/1-cleaning-cdk-resources.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/3-cleaning-up/1-cleaning-cdk-resources.html</guid>
+      <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/3-cleaning-up/1-cleaning-cdk-resources.html</guid>
       <description></description>
     </item>
     
     <item>
       <title>1. Creating new CDK Application</title>
-      <link>http://example.org/2-workshop/1-creating-new-cdk-application.html</link>
+      <link>https://petrabarus.github.io/aws-cicd-cdk-workshop/2-workshop/1-creating-new-cdk-application.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2-workshop/1-creating-new-cdk-application.html</guid>
+      <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/2-workshop/1-creating-new-cdk-application.html</guid>
       <description>Now we are creating a new directory for the application.
 mkdir myapp &amp;amp;&amp;amp; cd myapp To initiate the CDK application, execute command below.
 cdk init app --language typescript Run the command below in a new terminal to watch modification to Typescript files.
@@ -32,19 +32,19 @@ cdk deploy </description>
     
     <item>
       <title>1. Setting Up Cloud9</title>
-      <link>http://example.org/1-setting-up-environment/1-setting-up-cloud9.html</link>
+      <link>https://petrabarus.github.io/aws-cicd-cdk-workshop/1-setting-up-environment/1-setting-up-cloud9.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/1-setting-up-environment/1-setting-up-cloud9.html</guid>
+      <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/1-setting-up-environment/1-setting-up-cloud9.html</guid>
       <description></description>
     </item>
     
     <item>
       <title>2. Creating CodeCommit Repository</title>
-      <link>http://example.org/2-workshop/2-creating-code-commit-repository-copy.html</link>
+      <link>https://petrabarus.github.io/aws-cicd-cdk-workshop/2-workshop/2-creating-code-commit-repository-copy.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2-workshop/2-creating-code-commit-repository-copy.html</guid>
+      <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/2-workshop/2-creating-code-commit-repository-copy.html</guid>
       <description>To install AWS CodeCommit constructs for CDK, execute command below.
 npm i @aws-cdk/aws-codecommit Overwrite file lib/myapp-stack.ts with the follow code.
 import * as cdk from &amp;#39;@aws-cdk/core&amp;#39;; import * as codecommit from &amp;#39;@aws-cdk/aws-codecommit&amp;#39;; export class MyappStack extends cdk.Stack { private codeRepository: codecommit.Repository; constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) { super(scope, id, props); this.createCodeCommitRepository(); this.createECSApplication(); this.createECRRepository(); this.createPipeline(); } createCodeCommitRepository() { this.codeRepository = new codecommit.Repository(this, &amp;#39;CodeRepository&amp;#39;, { repositoryName: &amp;#39;MyRepository&amp;#39; }); } } Now we can deploy the CDK application.</description>
@@ -52,19 +52,19 @@ import * as cdk from &amp;#39;@aws-cdk/core&amp;#39;; import * as codecommit fro
     
     <item>
       <title>2. Deleting Cloud9 Environment</title>
-      <link>http://example.org/3-cleaning-up/2-deleting-cloud9-environment.html</link>
+      <link>https://petrabarus.github.io/aws-cicd-cdk-workshop/3-cleaning-up/2-deleting-cloud9-environment.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/3-cleaning-up/2-deleting-cloud9-environment.html</guid>
+      <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/3-cleaning-up/2-deleting-cloud9-environment.html</guid>
       <description></description>
     </item>
     
     <item>
       <title>2. Environment Check and Set Up</title>
-      <link>http://example.org/1-setting-up-environment/2-environment-check-and-setup.html</link>
+      <link>https://petrabarus.github.io/aws-cicd-cdk-workshop/1-setting-up-environment/2-environment-check-and-setup.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/1-setting-up-environment/2-environment-check-and-setup.html</guid>
+      <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/1-setting-up-environment/2-environment-check-and-setup.html</guid>
       <description>Check NPM version To check NPM version execute command below in the terminal.
 $ npm --version The output should look like this.
 6.14.6 Check and Update CDK To check CDK version execute command below in the terminal.
@@ -75,10 +75,10 @@ npm i -g -f aws-cdk@latest To initiate the CDK bootstrap asset, execute command 
     
     <item>
       <title>3. Creating ECS Cluster</title>
-      <link>http://example.org/2-workshop/3-creating-ecs-cluster.html</link>
+      <link>https://petrabarus.github.io/aws-cicd-cdk-workshop/2-workshop/3-creating-ecs-cluster.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2-workshop/3-creating-ecs-cluster.html</guid>
+      <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/2-workshop/3-creating-ecs-cluster.html</guid>
       <description>npm i @aws-cdk/aws-ecs @aws-cdk/aws-ecs-patterns Add 3 new files src/index.html, Dockerfile, and .dockerignore.
 src/index.html
 &amp;lt;h1&amp;gt;Hello World!&amp;lt;/h1&amp;gt; Dockerfile
@@ -89,20 +89,20 @@ import * as cdk from &amp;#39;@aws-cdk/core&amp;#39;; import * as codecommit fro
     
     <item>
       <title>4. Creating ECS Cluster</title>
-      <link>http://example.org/2-workshop/4-creating-ecr-repository.html</link>
+      <link>https://petrabarus.github.io/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2-workshop/4-creating-ecr-repository.html</guid>
+      <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html</guid>
       <description>npm i @aws-cdk/aws-ecr Overwrite file myapp-stack.ts with the code below.
 import * as cdk from &amp;#39;@aws-cdk/core&amp;#39;; import * as codecommit from &amp;#39;@aws-cdk/aws-codecommit&amp;#39;; import * as ecs from &amp;#39;@aws-cdk/aws-ecs&amp;#39;; import * as ecsPatterns from &amp;#39;@aws-cdk/aws-ecs-patterns&amp;#39;; export class MyappStack extends cdk.Stack { private codeRepository: codecommit.Repository; private cluster: ecs.Cluster; private service: ecs.IService; constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) { super(scope, id, props); this.createCodeCommitRepository(); this.createECSApplication(); } createCodeCommitRepository() { this.codeRepository = new codecommit.Repository(this, &amp;#39;Repository&amp;#39;, { repositoryName: &amp;#39;MyRepository&amp;#39; }); } createECSApplication() { this.</description>
     </item>
     
     <item>
       <title>5. Creating Build Pipeline</title>
-      <link>http://example.org/2-workshop/5-creating-build-pipeline.html</link>
+      <link>https://petrabarus.github.io/aws-cicd-cdk-workshop/2-workshop/5-creating-build-pipeline.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2-workshop/5-creating-build-pipeline.html</guid>
+      <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/2-workshop/5-creating-build-pipeline.html</guid>
       <description>Install CodePipeline and CodeBuild dependencies.
 npm i @aws-cdk/aws-iam @aws-cdk/aws-codebuild @aws-cdk/aws-codepipeline @aws-cdk/aws-codepipeline-actions Create file buildspec.yml in the root directory of the application.
 version: &amp;#39;0.2&amp;#39; phases: pre_build: commands: - aws --version - $(aws ecr get-login --region ${AWS_DEFAULT_REGION} --no-include-email | sed &amp;#39;s|https://||&amp;#39;) - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7) - IMAGE_TAG=${COMMIT_HASH:=latest} build: commands: - docker build -t $REPOSITORY_URI:latest . - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG post_build: commands: - docker push $REPOSITORY_URI:latest - docker push $REPOSITORY_URI:$IMAGE_TAG - printf &amp;#34;[{\&amp;#34;name\&amp;#34;:\&amp;#34;${CONTAINER_NAME}\&amp;#34;,\&amp;#34;imageUri\&amp;#34;:\&amp;#34;${REPOSITORY_URI}:latest\&amp;#34;}]&amp;#34; &amp;gt; imagedefinitions.</description>
@@ -110,10 +110,10 @@ version: &amp;#39;0.2&amp;#39; phases: pre_build: commands: - aws --version - $(
     
     <item>
       <title>6. Creating Deploy Stage</title>
-      <link>http://example.org/2-workshop/6-creating-deploy-pipeline.html</link>
+      <link>https://petrabarus.github.io/aws-cicd-cdk-workshop/2-workshop/6-creating-deploy-pipeline.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2-workshop/6-creating-deploy-pipeline.html</guid>
+      <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/2-workshop/6-creating-deploy-pipeline.html</guid>
       <description>import * as cdk from &amp;#39;@aws-cdk/core&amp;#39;; import * as codecommit from &amp;#39;@aws-cdk/aws-codecommit&amp;#39;; import * as ecs from &amp;#39;@aws-cdk/aws-ecs&amp;#39;; import * as ecsPatterns from &amp;#39;@aws-cdk/aws-ecs-patterns&amp;#39;; import * as ecr from &amp;#39;@aws-cdk/aws-ecr&amp;#39;; import * as codebuild from &amp;#39;@aws-cdk/aws-codebuild&amp;#39;; import * as codepipeline from &amp;#39;@aws-cdk/aws-codepipeline&amp;#39;; import * as codepipelineActions from &amp;#39;@aws-cdk/aws-codepipeline-actions&amp;#39;; export class MyappStack extends cdk.Stack { private codeRepository: codecommit.Repository; private cluster: ecs.Cluster; private service: ecs.BaseService; private imageRepository: ecr.Repository; constructor(scope: cdk.Construct, id: string, props?</description>
     </item>
     
