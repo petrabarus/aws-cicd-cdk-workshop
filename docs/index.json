@@ -4,7 +4,7 @@
 	"title": "Setting Up Environment",
 	"tags": [],
 	"description": "",
-	"content": "Chapter 1 Setting Up Environment In this chapter we will set up environment by creating a new Cloud9 Development Environment.\n"
+	"content": "Chapter 1 Setting Up Environment In this chapter we will set up environment by creating a new AWS Cloud9 Development Environment and make sure the environment is suitable for our development. AWS Cloud9 is a cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser. It includes a code editor, debugger, and terminal. Cloud9 comes prepackaged with essential tools for popular programming languages, including JavaScript, Python, PHP, and more, so you don’t need to install files or configure your development machine to start new projects.\nClick the orange arrow on the right hand side to continue to next step.\n"
 },
 {
 	"uri": "https://petrabarus.github.io/aws-cicd-cdk-workshop/3-cleaning-up/1-cleaning-cdk-resources.html",
@@ -22,10 +22,10 @@
 },
 {
 	"uri": "https://petrabarus.github.io/aws-cicd-cdk-workshop/1-setting-up-environment/1-setting-up-cloud9.html",
-	"title": "1. Setting Up Cloud9",
+	"title": "1. Setting Up AWS Cloud9",
 	"tags": [],
 	"description": "",
-	"content": ""
+	"content": "Now we are going to provision our AWS Cloud9 Integrated Development Environment.\nSTEP 1 Go to AWS Cloud9 Console.\nSTEP 2 Click Create environment\nSTEP 3 Put \u0026ldquo;CICD-CDK-Workshop\u0026rdquo; or any name you like in the Name field. You can leave the description empty. Click Next step to proceed.\nSTEP 4 In the Environment settings, choose below configuration\n \u0026ldquo;Create a new EC2 instance for environment (direct access)\u0026rdquo; in the Environment type \u0026ldquo;t2.micro (1 GiB RAM + 1 vCPU)\u0026rdquo; in the Instance type \u0026ldquo;Amazon Linux 2\u0026rdquo; in the Platform  Leave everything else as default. Click Next step to proceed.\nSTEP 5 In the step Review, make sure the configurations are correct. Click Create environment to proceed.\nSTEP 6 Please wait for a couple of minutes while an instance of AWS Cloud9 is being set up.\nFINAL Now the new AWS Cloud9 IDE is ready to use.\nClick the orange arrow on the right hand side to continue to next step.\n"
 },
 {
 	"uri": "https://petrabarus.github.io/aws-cicd-cdk-workshop/2-workshop.html",
@@ -53,7 +53,7 @@
 	"title": "2. Environment Check and Set Up",
 	"tags": [],
 	"description": "",
-	"content": "Check NPM version To check NPM version execute command below in the terminal.\n$ npm --version The output should look like this.\n6.14.6 Check and Update CDK To check CDK version execute command below in the terminal.\ncdk --version The output should look like this.\n1.70.0 (build c145314) To update the CDK version to latest, execute command below in the terminal.\nnpm i -g -f aws-cdk@latest To initiate the CDK bootstrap asset, execute command below.\ncdk bootstrap Installing Git helper for CodeCommit Check whether PIP is already installed in the system, execute command below.\npip --version The output should look like below.\npip 9.0.3 from /usr/lib/python3.6/dist-packages (python 3.6) To install the git helper for CodeCommit, execute command below.\npip install git-remote-codecommit "
+	"content": "Now we are going to check our environment to make sure we can use it to do the worksho.\nCheck NPM version We are going to need Node Package Manager to install CDK construct libraries in our project.\nTo check NPM version execute command below in the terminal.\nnpm --version The output should look a bit similar to this.\n6.14.6 Check and Update CDK Now we need to make sure CDK is installed in our environment and update it to latest version.\nTo check CDK version execute command below in the terminal.\ncdk --version The output should look like this.\n1.70.0 (build c145314) To update the CDK version to latest, execute command below in the terminal.\nnpm i -g -f aws-cdk@latest Installing Git helper for CodeCommit To commit code to AWS CodeCommit using AWS credentials we are going to need to have Git helper for CodeCommit installed in our environment.\nCheck whether PIP is already installed in the system, execute command below.\npip --version The output should look a bit simlar to below.\npip 9.0.3 from /usr/lib/python3.6/dist-packages (python 3.6) To install the git helper for CodeCommit, execute command below.\nsudo pip install git-remote-codecommit Now our environment is ready for the workshop. Click the orange arrow on the right hand side to continue to next step.\n"
 },
 {
 	"uri": "https://petrabarus.github.io/aws-cicd-cdk-workshop/3-cleaning-up.html",
@@ -95,7 +95,7 @@
 	"title": "",
 	"tags": [],
 	"description": "",
-	"content": "AWS Workshop Building CI/CD Pipeline using AWS CDK Welcome to Modern Application Workshop: Building CI/CD Pipeline using AWS Cloud Development Kit.\nIn this workshop you will learn how to orchestrate AWS CI/CD tools such as AWS CodePipeline, AWS CodeBuild, and AWS CodeCommit by using Infrastructure as Code with AWS Cloud Development Kit. This workshop should take you 60-70 minutes to accomplish.\nClick the orange arrow in the right to start your journey.\n"
+	"content": "AWS Workshop Building CI/CD Pipeline using AWS CDK Welcome to Modern Application Workshop: Building CI/CD Pipeline using AWS Cloud Development Kit.\nIn this workshop you will learn how to orchestrate AWS CI/CD tools such as AWS CodePipeline, AWS CodeBuild, and AWS CodeCommit by using Infrastructure as Code with AWS Cloud Development Kit. This workshop should take you 60-70 minutes to accomplish.\nClick the orange arrow in the right hand side to start your journey.\n"
 },
 {
 	"uri": "https://petrabarus.github.io/aws-cicd-cdk-workshop/categories.html",

@@ -8,12 +8,17 @@
     <language>id-id</language>
     <lastBuildDate>Tue, 03 Nov 2020 16:12:22 +0700</lastBuildDate><atom:link href="https://petrabarus.github.io/aws-cicd-cdk-workshop/1-setting-up-environment/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>1. Setting Up Cloud9</title>
+      <title>1. Setting Up AWS Cloud9</title>
       <link>https://petrabarus.github.io/aws-cicd-cdk-workshop/1-setting-up-environment/1-setting-up-cloud9.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/1-setting-up-environment/1-setting-up-cloud9.html</guid>
-      <description></description>
+      <description>Now we are going to provision our AWS Cloud9 Integrated Development Environment.
+STEP 1 Go to AWS Cloud9 Console.
+STEP 2 Click Create environment
+STEP 3 Put &amp;ldquo;CICD-CDK-Workshop&amp;rdquo; or any name you like in the Name field. You can leave the description empty. Click Next step to proceed.
+STEP 4 In the Environment settings, choose below configuration
+ &amp;ldquo;Create a new EC2 instance for environment (direct access)&amp;rdquo; in the Environment type &amp;ldquo;t2.</description>
     </item>
     
     <item>
@@ -22,12 +27,11 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/1-setting-up-environment/2-environment-check-and-setup.html</guid>
-      <description>Check NPM version To check NPM version execute command below in the terminal.
-$ npm --version The output should look like this.
-6.14.6 Check and Update CDK To check CDK version execute command below in the terminal.
-cdk --version The output should look like this.
-1.70.0 (build c145314) To update the CDK version to latest, execute command below in the terminal.
-npm i -g -f aws-cdk@latest To initiate the CDK bootstrap asset, execute command below.</description>
+      <description>Now we are going to check our environment to make sure we can use it to do the worksho.
+Check NPM version We are going to need Node Package Manager to install CDK construct libraries in our project.
+To check NPM version execute command below in the terminal.
+npm --version The output should look a bit similar to this.
+6.14.6 Check and Update CDK Now we need to make sure CDK is installed in our environment and update it to latest version.</description>
     </item>
     
   </channel>

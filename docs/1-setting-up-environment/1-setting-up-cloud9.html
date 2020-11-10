@@ -9,24 +9,24 @@
 
     <link rel="icon" href="/aws-cicd-cdk-workshop/images/favicon.png" type="image/png">
 
-    <title>1. Setting Up Cloud9 :: CI/CD using AWS CDK Workshop</title>
+    <title>1. Setting Up AWS Cloud9 :: CI/CD using AWS CDK Workshop</title>
 
     
-    <link href="/aws-cicd-cdk-workshop/css/nucleus.css?1605000022" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/fontawesome-all.min.css?1605000022" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/hybrid.css?1605000022" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/featherlight.min.css?1605000022" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/perfect-scrollbar.min.css?1605000022" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/auto-complete.css?1605000022" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/atom-one-dark-reasonable.css?1605000022" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/theme.css?1605000022" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/hugo-theme.css?1605000022" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/nucleus.css?1605001563" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/fontawesome-all.min.css?1605001563" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/hybrid.css?1605001563" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/featherlight.min.css?1605001563" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/perfect-scrollbar.min.css?1605001563" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/auto-complete.css?1605001563" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/atom-one-dark-reasonable.css?1605001563" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/theme.css?1605001563" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/hugo-theme.css?1605001563" rel="stylesheet">
     
-    <link href="/aws-cicd-cdk-workshop/css/theme-mine.css?1605000022" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/theme-mine.css?1605001563" rel="stylesheet">
     
     
 
-    <script src="/aws-cicd-cdk-workshop/js/jquery-3.3.1.min.js?1605000022"></script>
+    <script src="/aws-cicd-cdk-workshop/js/jquery-3.3.1.min.js?1605001563"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,14 +52,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/lunr.min.js?1605000022"></script>
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/auto-complete.js?1605000022"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/lunr.min.js?1605001563"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/auto-complete.js?1605001563"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/petrabarus.github.io\/aws-cicd-cdk-workshop\/";
     
 </script>
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/search.js?1605000022"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/search.js?1605001563"></script>
 
     
   </div>
@@ -104,9 +104,9 @@
  
   
     
-      <li data-nav-id="/aws-cicd-cdk-workshop/1-setting-up-environment/1-setting-up-cloud9.html" title="1. Setting Up Cloud9" class="dd-item active">
+      <li data-nav-id="/aws-cicd-cdk-workshop/1-setting-up-environment/1-setting-up-cloud9.html" title="1. Setting Up AWS Cloud9" class="dd-item active">
         <a href="/aws-cicd-cdk-workshop/1-setting-up-environment/1-setting-up-cloud9.html">
-        1. Setting Up Cloud9
+        1. Setting Up AWS Cloud9
         
         </a>
     </li>
@@ -435,7 +435,7 @@
             
           
           
-            <a href='/aws-cicd-cdk-workshop/'></a> > <a href='/aws-cicd-cdk-workshop/1-setting-up-environment.html'>Setting Up Environment</a> > 1. Setting Up Cloud9
+            <a href='/aws-cicd-cdk-workshop/'></a> > <a href='/aws-cicd-cdk-workshop/1-setting-up-environment.html'>Setting Up Environment</a> > 1. Setting Up AWS Cloud9
           
         
           
@@ -464,13 +464,29 @@
           
             <h1>
               
-              1. Setting Up Cloud9
+              1. Setting Up AWS Cloud9
             </h1>
           
 
         
 
 
+<p>Now we are going to provision our AWS Cloud9 Integrated Development Environment.</p>
+<p><strong>STEP 1</strong> Go to <a href="https://console.aws.amazon.com/cloud9/home">AWS Cloud9 Console</a>.</p>
+<p><strong>STEP 2</strong> Click <a href="https://console.aws.amazon.com/cloud9/home/create"><strong>Create environment</strong></a></p>
+<p><strong>STEP 3</strong> Put &ldquo;CICD-CDK-Workshop&rdquo; or any name you like in the <strong>Name</strong> field. You can leave the description empty. Click <strong>Next step</strong> to proceed.</p>
+<p><strong>STEP 4</strong> In the <strong>Environment settings</strong>, choose below configuration</p>
+<ol>
+<li>&ldquo;Create a new EC2 instance for environment (direct access)&rdquo; in the <strong>Environment type</strong></li>
+<li>&ldquo;t2.micro (1 GiB RAM + 1 vCPU)&rdquo; in the <strong>Instance type</strong></li>
+<li>&ldquo;Amazon Linux 2&rdquo; in the <strong>Platform</strong></li>
+</ol>
+<p>Leave everything else as default.
+Click <strong>Next step</strong> to proceed.</p>
+<p><strong>STEP 5</strong> In the step <strong>Review</strong>, make sure the configurations are correct. Click <strong>Create environment</strong> to proceed.</p>
+<p><strong>STEP 6</strong> Please wait for a couple of minutes while an instance of AWS Cloud9 is being set up.</p>
+<p><strong>FINAL</strong> Now the new AWS Cloud9 IDE is ready to use.</p>
+<p>Click the orange arrow on the right hand side to continue to next step.</p>
 
 
 <footer class="footline">
@@ -740,19 +756,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/aws-cicd-cdk-workshop/js/clipboard.min.js?1605000022"></script>
-    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.min.js?1605000022"></script>
-    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.jquery.min.js?1605000022"></script>
-    <script src="/aws-cicd-cdk-workshop/js/jquery.sticky.js?1605000022"></script>
-    <script src="/aws-cicd-cdk-workshop/js/featherlight.min.js?1605000022"></script>
-    <script src="/aws-cicd-cdk-workshop/js/highlight.pack.js?1605000022"></script>
+    <script src="/aws-cicd-cdk-workshop/js/clipboard.min.js?1605001563"></script>
+    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.min.js?1605001563"></script>
+    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.jquery.min.js?1605001563"></script>
+    <script src="/aws-cicd-cdk-workshop/js/jquery.sticky.js?1605001563"></script>
+    <script src="/aws-cicd-cdk-workshop/js/featherlight.min.js?1605001563"></script>
+    <script src="/aws-cicd-cdk-workshop/js/highlight.pack.js?1605001563"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/aws-cicd-cdk-workshop/js/modernizr.custom-3.6.0.js?1605000022"></script>
-    <script src="/aws-cicd-cdk-workshop/js/learn.js?1605000022"></script>
-    <script src="/aws-cicd-cdk-workshop/js/hugo-learn.js?1605000022"></script>
+    <script src="/aws-cicd-cdk-workshop/js/modernizr.custom-3.6.0.js?1605001563"></script>
+    <script src="/aws-cicd-cdk-workshop/js/learn.js?1605001563"></script>
+    <script src="/aws-cicd-cdk-workshop/js/hugo-learn.js?1605001563"></script>
     
         
-            <script src="/aws-cicd-cdk-workshop/mermaid/mermaid.js?1605000022"></script>
+            <script src="/aws-cicd-cdk-workshop/mermaid/mermaid.js?1605001563"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });
