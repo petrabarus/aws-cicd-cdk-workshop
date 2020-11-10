@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Setting Up Environment on CI/CD using AWS CDK Workshop</title>
+    <link>http://example.org/1-setting-up-environment.html</link>
+    <description>Recent content in Setting Up Environment on CI/CD using AWS CDK Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>id-id</language>
+    <lastBuildDate>Tue, 03 Nov 2020 16:12:22 +0700</lastBuildDate><atom:link href="http://example.org/1-setting-up-environment/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>1. Setting Up Cloud9</title>
+      <link>http://example.org/1-setting-up-environment/1-setting-up-cloud9.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/1-setting-up-environment/1-setting-up-cloud9.html</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>2. Environment Check and Set Up</title>
+      <link>http://example.org/1-setting-up-environment/2-environment-check-and-setup.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/1-setting-up-environment/2-environment-check-and-setup.html</guid>
+      <description>Check NPM version To check NPM version execute command below in the terminal.
+$ npm --version The output should look like this.
+6.14.6 Check and Update CDK To check CDK version execute command below in the terminal.
+cdk --version The output should look like this.
+1.70.0 (build c145314) To update the CDK version to latest, execute command below in the terminal.
+npm i -g -f aws-cdk@latest To initiate the CDK bootstrap asset, execute command below.</description>
+    </item>
+    
+  </channel>
+</rss>

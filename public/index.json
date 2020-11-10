@@ -1,0 +1,113 @@
+[
+{
+	"uri": "http://example.org/1-setting-up-environment.html",
+	"title": "Setting Up Environment",
+	"tags": [],
+	"description": "",
+	"content": "Chapter 1 Setting Up Environment In this chapter we will set up environment by creating a new Cloud9 Development Environment.\n"
+},
+{
+	"uri": "http://example.org/3-cleaning-up/1-cleaning-cdk-resources.html",
+	"title": "1. Cleaning Provisioned Resources",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "http://example.org/2-workshop/1-creating-new-cdk-application.html",
+	"title": "1. Creating new CDK Application",
+	"tags": [],
+	"description": "",
+	"content": "Now we are creating a new directory for the application.\nmkdir myapp \u0026amp;\u0026amp; cd myapp To initiate the CDK application, execute command below.\ncdk init app --language typescript Run the command below in a new terminal to watch modification to Typescript files.\nnpm run watch To see the generate CloudFormation template, execute command below.\ncdk synth To deploy the CDK application, execute command below.\ncdk deploy "
+},
+{
+	"uri": "http://example.org/1-setting-up-environment/1-setting-up-cloud9.html",
+	"title": "1. Setting Up Cloud9",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "http://example.org/2-workshop.html",
+	"title": "Workshop",
+	"tags": [],
+	"description": "",
+	"content": "Chapter 2 Building CI/CD Pipeline using AWS CDK Lorem Ipsum.\n"
+},
+{
+	"uri": "http://example.org/2-workshop/2-creating-code-commit-repository-copy.html",
+	"title": "2. Creating CodeCommit Repository",
+	"tags": [],
+	"description": "",
+	"content": "To install AWS CodeCommit constructs for CDK, execute command below.\nnpm i @aws-cdk/aws-codecommit Overwrite file lib/myapp-stack.ts with the follow code.\nimport * as cdk from \u0026#39;@aws-cdk/core\u0026#39;; import * as codecommit from \u0026#39;@aws-cdk/aws-codecommit\u0026#39;; export class MyappStack extends cdk.Stack { private codeRepository: codecommit.Repository; constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) { super(scope, id, props); this.createCodeCommitRepository(); this.createECSApplication(); this.createECRRepository(); this.createPipeline(); } createCodeCommitRepository() { this.codeRepository = new codecommit.Repository(this, \u0026#39;CodeRepository\u0026#39;, { repositoryName: \u0026#39;MyRepository\u0026#39; }); } } Now we can deploy the CDK application.\ncdk deploy To add the\ngit remote add origin codecommit://MyRepository git add . git commit -m \u0026#34;Add codecommit repository.\u0026#34; git push origin master "
+},
+{
+	"uri": "http://example.org/3-cleaning-up/2-deleting-cloud9-environment.html",
+	"title": "2. Deleting Cloud9 Environment",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "http://example.org/1-setting-up-environment/2-environment-check-and-setup.html",
+	"title": "2. Environment Check and Set Up",
+	"tags": [],
+	"description": "",
+	"content": "Check NPM version To check NPM version execute command below in the terminal.\n$ npm --version The output should look like this.\n6.14.6 Check and Update CDK To check CDK version execute command below in the terminal.\ncdk --version The output should look like this.\n1.70.0 (build c145314) To update the CDK version to latest, execute command below in the terminal.\nnpm i -g -f aws-cdk@latest To initiate the CDK bootstrap asset, execute command below.\ncdk bootstrap Installing Git helper for CodeCommit Check whether PIP is already installed in the system, execute command below.\npip --version The output should look like below.\npip 9.0.3 from /usr/lib/python3.6/dist-packages (python 3.6) To install the git helper for CodeCommit, execute command below.\npip install git-remote-codecommit "
+},
+{
+	"uri": "http://example.org/3-cleaning-up.html",
+	"title": "Cleaning Up",
+	"tags": [],
+	"description": "",
+	"content": "Chapter 3 Cleaning Up Lorem Ipsum.\n"
+},
+{
+	"uri": "http://example.org/2-workshop/3-creating-ecs-cluster.html",
+	"title": "3. Creating ECS Cluster",
+	"tags": [],
+	"description": "",
+	"content": "npm i @aws-cdk/aws-ecs @aws-cdk/aws-ecs-patterns Add 3 new files src/index.html, Dockerfile, and .dockerignore.\nsrc/index.html\n\u0026lt;h1\u0026gt;Hello World!\u0026lt;/h1\u0026gt; Dockerfile\n########## Simple Dockerfile for running HTML file.# To run execute# docker build -t webserver .# docker run -it --rm -d -p 8080:80 --name web webserver#########FROMnginx:latestCOPY ./src/index.html /usr/share/nginx/html/index.html.dockerignore\ncdk.out Overwrite file myapp-stack.ts with this.\nimport * as cdk from \u0026#39;@aws-cdk/core\u0026#39;; import * as codecommit from \u0026#39;@aws-cdk/aws-codecommit\u0026#39;; import * as ecs from \u0026#39;@aws-cdk/aws-ecs\u0026#39;; import * as ecsPatterns from \u0026#39;@aws-cdk/aws-ecs-patterns\u0026#39;; export class MyappStack extends cdk.Stack { private codeRepository: codecommit.Repository; private cluster: ecs.Cluster; private service: ecs.IService; constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) { super(scope, id, props); this.createCodeCommitRepository(); this.createECSApplication(); } createCodeCommitRepository() { this.codeRepository = new codecommit.Repository(this, \u0026#39;Repository\u0026#39;, { repositoryName: \u0026#39;MyRepository\u0026#39; }); } createECSApplication() { this.cluster = new ecs.Cluster(this, \u0026#39;Cluster\u0026#39;); const fargateService = new ecsPatterns.ApplicationLoadBalancedFargateService(this, \u0026#39;Service\u0026#39;, { cluster: this.cluster, memoryLimitMiB: 1024, cpu: 512, taskImageOptions: { image: ecs.ContainerImage.fromAsset(\u0026#39;.\u0026#39;), containerName: \u0026#39;web\u0026#39;, }, }); this.service = fargateService.service; } } cdk deploy "
+},
+{
+	"uri": "http://example.org/2-workshop/4-creating-ecr-repository.html",
+	"title": "4. Creating ECS Cluster",
+	"tags": [],
+	"description": "",
+	"content": "npm i @aws-cdk/aws-ecr Overwrite file myapp-stack.ts with the code below.\nimport * as cdk from \u0026#39;@aws-cdk/core\u0026#39;; import * as codecommit from \u0026#39;@aws-cdk/aws-codecommit\u0026#39;; import * as ecs from \u0026#39;@aws-cdk/aws-ecs\u0026#39;; import * as ecsPatterns from \u0026#39;@aws-cdk/aws-ecs-patterns\u0026#39;; export class MyappStack extends cdk.Stack { private codeRepository: codecommit.Repository; private cluster: ecs.Cluster; private service: ecs.IService; constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) { super(scope, id, props); this.createCodeCommitRepository(); this.createECSApplication(); } createCodeCommitRepository() { this.codeRepository = new codecommit.Repository(this, \u0026#39;Repository\u0026#39;, { repositoryName: \u0026#39;MyRepository\u0026#39; }); } createECSApplication() { this.cluster = new ecs.Cluster(this, \u0026#39;Cluster\u0026#39;); const fargateService = new ecsPatterns.ApplicationLoadBalancedFargateService(this, \u0026#39;Service\u0026#39;, { cluster: this.cluster, memoryLimitMiB: 1024, cpu: 512, taskImageOptions: { image: ecs.ContainerImage.fromAsset(\u0026#39;.\u0026#39;), containerName: \u0026#39;web\u0026#39;, }, }); this.service = fargateService.service; } } cdk deploy "
+},
+{
+	"uri": "http://example.org/2-workshop/5-creating-build-pipeline.html",
+	"title": "5. Creating Build Pipeline",
+	"tags": [],
+	"description": "",
+	"content": "Install CodePipeline and CodeBuild dependencies.\nnpm i @aws-cdk/aws-iam @aws-cdk/aws-codebuild @aws-cdk/aws-codepipeline @aws-cdk/aws-codepipeline-actions Create file buildspec.yml in the root directory of the application.\nversion: \u0026#39;0.2\u0026#39; phases: pre_build: commands: - aws --version - $(aws ecr get-login --region ${AWS_DEFAULT_REGION} --no-include-email | sed \u0026#39;s|https://||\u0026#39;) - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7) - IMAGE_TAG=${COMMIT_HASH:=latest} build: commands: - docker build -t $REPOSITORY_URI:latest . - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG post_build: commands: - docker push $REPOSITORY_URI:latest - docker push $REPOSITORY_URI:$IMAGE_TAG - printf \u0026#34;[{\\\u0026#34;name\\\u0026#34;:\\\u0026#34;${CONTAINER_NAME}\\\u0026#34;,\\\u0026#34;imageUri\\\u0026#34;:\\\u0026#34;${REPOSITORY_URI}:latest\\\u0026#34;}]\u0026#34; \u0026gt; imagedefinitions.json artifacts: files: - imagedefinitions.json Overwrite file myapp-stack.ts with this.\nimport * as cdk from \u0026#39;@aws-cdk/core\u0026#39;; import * as codecommit from \u0026#39;@aws-cdk/aws-codecommit\u0026#39;; import * as ecs from \u0026#39;@aws-cdk/aws-ecs\u0026#39;; import * as ecsPatterns from \u0026#39;@aws-cdk/aws-ecs-patterns\u0026#39;; import * as ecr from \u0026#39;@aws-cdk/aws-ecr\u0026#39;; import * as codebuild from \u0026#39;@aws-cdk/aws-codebuild\u0026#39;; import * as codepipeline from \u0026#39;@aws-cdk/aws-codepipeline\u0026#39;; import * as codepipelineActions from \u0026#39;@aws-cdk/aws-codepipeline-actions\u0026#39;; export class MyappStack extends cdk.Stack { private codeRepository: codecommit.Repository; private cluster: ecs.Cluster; private service: ecs.IService; private imageRepository: ecr.Repository; constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) { super(scope, id, props); this.createCodeCommitRepository(); this.createECSApplication(); this.createECRRepository(); this.createPipeline(); } createCodeCommitRepository() { this.codeRepository = new codecommit.Repository(this, \u0026#39;Repository\u0026#39;, { repositoryName: \u0026#39;MyRepository\u0026#39; }); } createECSApplication() { this.cluster = new ecs.Cluster(this, \u0026#39;Cluster\u0026#39;); const fargateService = new ecsPatterns.ApplicationLoadBalancedFargateService(this, \u0026#39;Service\u0026#39;, { cluster: this.cluster, memoryLimitMiB: 1024, cpu: 512, taskImageOptions: { image: ecs.ContainerImage.fromAsset(\u0026#39;.\u0026#39;), containerName: \u0026#39;web\u0026#39;, }, }); this.service = fargateService.service; } createECRRepository() { this.imageRepository = new ecr.Repository(this, \u0026#39;ImageRepository\u0026#39;); new cdk.CfnOutput(this, \u0026#39;ImageRepositoryURI\u0026#39;, { value: this.imageRepository.repositoryUri }); } createPipeline() { const pipeline = new codepipeline.Pipeline(this, \u0026#39;Pipeline\u0026#39;, { stages: this.createPipelineStages(), }); } createPipelineStages() { const sourceOutput = new codepipeline.Artifact(); const buildOutput = new codepipeline.Artifact(); return [ this.createStageSource(sourceOutput), this.createStageBuild(sourceOutput, buildOutput), ]; } createStageSource(output: codepipeline.Artifact): codepipeline.StageOptions { return { stageName: \u0026#39;Source\u0026#39;, actions: [ new codepipelineActions.CodeCommitSourceAction({ actionName: \u0026#39;CodeCommit\u0026#39;, repository: this.codeRepository, output: output, }) ] }; } createStageBuild(input: codepipeline.Artifact, output: codepipeline.Artifact): codepipeline.StageOptions { const project = new codebuild.PipelineProject(this, \u0026#39;ImageBuildProject\u0026#39;, { environment: { buildImage: codebuild.LinuxBuildImage.STANDARD_2_0, privileged: true, }, buildSpec: codebuild.BuildSpec.fromSourceFilename(\u0026#39;buildspec.yml\u0026#39;), environmentVariables: { REPOSITORY_URI: {value: this.imageRepository.repositoryUri}, CONTAINER_NAME: {value: \u0026#34;web\u0026#34;}, } }); this.imageRepository.grantPullPush(project.grantPrincipal); return { stageName: \u0026#39;Build\u0026#39;, actions: [ new codepipelineActions.CodeBuildAction({ actionName: \u0026#39;ImageBuildAction\u0026#39;, input: input, outputs: [output], project: project, }) ] }; } } Execute following line to apply the change.\ncdk deploy Now we commit the change.\ngit add . git commit -m \u0026#34;Add build pipeline.\u0026#34; git push origin master "
+},
+{
+	"uri": "http://example.org/2-workshop/6-creating-deploy-pipeline.html",
+	"title": "6. Creating Deploy Stage",
+	"tags": [],
+	"description": "",
+	"content": "import * as cdk from \u0026#39;@aws-cdk/core\u0026#39;; import * as codecommit from \u0026#39;@aws-cdk/aws-codecommit\u0026#39;; import * as ecs from \u0026#39;@aws-cdk/aws-ecs\u0026#39;; import * as ecsPatterns from \u0026#39;@aws-cdk/aws-ecs-patterns\u0026#39;; import * as ecr from \u0026#39;@aws-cdk/aws-ecr\u0026#39;; import * as codebuild from \u0026#39;@aws-cdk/aws-codebuild\u0026#39;; import * as codepipeline from \u0026#39;@aws-cdk/aws-codepipeline\u0026#39;; import * as codepipelineActions from \u0026#39;@aws-cdk/aws-codepipeline-actions\u0026#39;; export class MyappStack extends cdk.Stack { private codeRepository: codecommit.Repository; private cluster: ecs.Cluster; private service: ecs.BaseService; private imageRepository: ecr.Repository; constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) { super(scope, id, props); this.createCodeCommitRepository(); this.createECSApplication(); this.createECRRepository(); this.createPipeline(); } createCodeCommitRepository() { this.codeRepository = new codecommit.Repository(this, \u0026#39;Repository\u0026#39;, { repositoryName: \u0026#39;MyRepository\u0026#39; }); } createECSApplication() { this.cluster = new ecs.Cluster(this, \u0026#39;Cluster\u0026#39;); const fargateService = new ecsPatterns.ApplicationLoadBalancedFargateService(this, \u0026#39;Service\u0026#39;, { cluster: this.cluster, memoryLimitMiB: 1024, cpu: 512, taskImageOptions: { image: ecs.ContainerImage.fromRegistry(\u0026#39;nginx:latest\u0026#39;), containerName: \u0026#39;web\u0026#39;, }, }); this.service = fargateService.service; } createECRRepository() { this.imageRepository = new ecr.Repository(this, \u0026#39;ImageRepository\u0026#39;); new cdk.CfnOutput(this, \u0026#39;ImageRepositoryURI\u0026#39;, { value: this.imageRepository.repositoryUri }); } createPipeline() { const pipeline = new codepipeline.Pipeline(this, \u0026#39;Pipeline\u0026#39;, { stages: this.createPipelineStages(), }); } createPipelineStages() { const sourceOutput = new codepipeline.Artifact(); const buildOutput = new codepipeline.Artifact(); return [ this.createStageSource(sourceOutput), this.createStageBuild(sourceOutput, buildOutput), this.createStageDeploy(buildOutput) ]; } createStageSource(output: codepipeline.Artifact): codepipeline.StageOptions { return { stageName: \u0026#39;Source\u0026#39;, actions: [ new codepipelineActions.CodeCommitSourceAction({ actionName: \u0026#39;CodeCommit\u0026#39;, repository: this.codeRepository, output: output, }) ] }; } createStageBuild(input: codepipeline.Artifact, output: codepipeline.Artifact): codepipeline.StageOptions { const project = new codebuild.PipelineProject(this, \u0026#39;ImageBuildProject\u0026#39;, { environment: { buildImage: codebuild.LinuxBuildImage.STANDARD_2_0, privileged: true, }, buildSpec: codebuild.BuildSpec.fromSourceFilename(\u0026#39;buildspec.yml\u0026#39;), environmentVariables: { REPOSITORY_URI: {value: this.imageRepository.repositoryUri}, CONTAINER_NAME: {value: \u0026#34;web\u0026#34;}, } }); this.imageRepository.grantPullPush(project.grantPrincipal); return { stageName: \u0026#39;Build\u0026#39;, actions: [ new codepipelineActions.CodeBuildAction({ actionName: \u0026#39;ImageBuildAction\u0026#39;, input: input, outputs: [output], project: project, }) ] }; } createStageDeploy(input: codepipeline.Artifact): codepipeline.StageOptions { this.imageRepository.grantPull(this.service.taskDefinition.executionRole!); return { stageName: \u0026#39;DeployToProduction\u0026#39;, actions: [ new codepipelineActions.EcsDeployAction({ actionName: \u0026#39;ProductionEcsDeployAction\u0026#39;, input: input, service: this.service, }) ], }; } } Apply the change.\ncdk deploy Try editing the src/index.html to new value.\n\u0026lt;h1\u0026gt;Hello all!\u0026lt;/h1\u0026gt; Now we commit and push the change\ngit add . git commit -m \u0026quot;add deploy.\u0026quot; git push origin master "
+},
+{
+	"uri": "http://example.org/",
+	"title": "",
+	"tags": [],
+	"description": "",
+	"content": "Building CI/CD Pipeline using AWS CDK $ cd myapp $ cdk ls MyappStack $ cdk deploy MyappStack $ Your name and email address were configured automatically based on your username and hostname. Please check that they are accurate. You can suppress this message by setting them explicitly: git config --global user.name \u0026quot;Your Name\u0026quot; git config --global user.email you@example.com $ Enumerating objects: 21, done. Counting objects: 100% (21/21), done. Compressing objects: 100% (17/17), done. Writing objects: 100% (21/21), 73.14 KiB | 3.32 MiB/s, done. Total 21 (delta 4), reused 0 (delta 0) To codecommit://MyRepository  "
+},
+{
+	"uri": "http://example.org/categories.html",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "http://example.org/tags.html",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]

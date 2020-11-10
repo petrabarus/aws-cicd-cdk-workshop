@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://example.org/1-setting-up-environment.html</loc>
+    <lastmod>2020-11-03T16:12:22+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/3-cleaning-up/1-cleaning-cdk-resources.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2-workshop/1-creating-new-cdk-application.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/1-setting-up-environment/1-setting-up-cloud9.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2-workshop.html</loc>
+    <lastmod>2020-11-03T16:12:32+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2-workshop/2-creating-code-commit-repository-copy.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/3-cleaning-up/2-deleting-cloud9-environment.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/1-setting-up-environment/2-environment-check-and-setup.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/3-cleaning-up.html</loc>
+    <lastmod>2020-11-03T16:12:52+07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2-workshop/3-creating-ecs-cluster.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2-workshop/4-creating-ecr-repository.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2-workshop/5-creating-build-pipeline.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2-workshop/6-creating-deploy-pipeline.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/</loc>
+    <lastmod>2020-11-03T16:12:52+07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories.html</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags.html</loc>
+  </url>
+  
+</urlset>
