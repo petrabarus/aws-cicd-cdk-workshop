@@ -1,48 +1,7 @@
-# Building CI/CD Pipeline using AWS CDK
+# AWS Workshop Building CI/CD Pipeline using AWS CDK
 
+Welcome to **Modern Application Workshop: Building CI/CD Pipeline using AWS Cloud Development Kit**.
 
+In this workshop you will learn how to orchestrate AWS CI/CD tools such as AWS CodePipeline, AWS CodeBuild, and AWS CodeCommit by using Infrastructure as Code with AWS Cloud Development Kit. This workshop should take you 60-70 minutes to accomplish.
 
-
-```
-$ cd myapp
-```
-
-```
-$ cdk ls
-MyappStack
-```
-
-```
-$ cdk deploy MyappStack
-```
-
-
-```
-$ 
-
-Your name and email address were configured automatically based
-on your username and hostname. Please check that they are accurate.
-You can suppress this message by setting them explicitly:
-
-    git config --global user.name "Your Name"
-    git config --global user.email you@example.com
-
-```
-
-```
-$ 
-Enumerating objects: 21, done.
-Counting objects: 100% (21/21), done.
-Compressing objects: 100% (17/17), done.
-Writing objects: 100% (21/21), 73.14 KiB | 3.32 MiB/s, done.
-Total 21 (delta 4), reused 0 (delta 0)
-To codecommit://MyRepository
-```
-
-```
-
-```
-
-```
-```
-
+Click the orange arrow in the right to start your journey.
