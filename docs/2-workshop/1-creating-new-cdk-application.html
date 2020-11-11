@@ -12,21 +12,21 @@
     <title>1. Creating new CDK Application :: CI/CD using AWS CDK Workshop</title>
 
     
-    <link href="/aws-cicd-cdk-workshop/css/nucleus.css?1605058824" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/fontawesome-all.min.css?1605058824" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/hybrid.css?1605058824" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/featherlight.min.css?1605058824" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/perfect-scrollbar.min.css?1605058824" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/auto-complete.css?1605058824" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/atom-one-dark-reasonable.css?1605058824" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/theme.css?1605058824" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/hugo-theme.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/nucleus.css?1605060362" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/fontawesome-all.min.css?1605060362" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/hybrid.css?1605060362" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/featherlight.min.css?1605060362" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/perfect-scrollbar.min.css?1605060362" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/auto-complete.css?1605060362" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/atom-one-dark-reasonable.css?1605060362" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/theme.css?1605060362" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/hugo-theme.css?1605060362" rel="stylesheet">
     
-    <link href="/aws-cicd-cdk-workshop/css/theme-mine.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/theme-mine.css?1605060362" rel="stylesheet">
     
     
 
-    <script src="/aws-cicd-cdk-workshop/js/jquery-3.3.1.min.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/jquery-3.3.1.min.js?1605060362"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,14 +52,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/lunr.min.js?1605058824"></script>
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/auto-complete.js?1605058824"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/lunr.min.js?1605060362"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/auto-complete.js?1605060362"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/petrabarus.github.io\/aws-cicd-cdk-workshop\/";
     
 </script>
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/search.js?1605058824"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/search.js?1605060362"></script>
 
     
   </div>
@@ -471,11 +471,15 @@
         
 
 
+<p>In this part you are going to create a new CDK application.</p>
 <p><strong>STEP 1</strong> Create a new directory for the application.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir myapp <span style="color:#f92672">&amp;&amp;</span> cd myapp
 </code></pre></div><p><strong>STEP 2</strong> initiate a new CDK application by executing command below.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cdk init app --language typescript
-</code></pre></div><p><strong>STEP 3</strong> Create a new terminal by clicking on the green cross, and click <strong>New Terminal</strong>.</p>
+</code></pre></div><p>You will notice new files and directory in the <code>myapp</code> directory.</p>
+<p><img src="/aws-cicd-cdk-workshop/images/content/screenshot-2-1.png" alt="screenshot-2-1"></p>
+<p><strong>STEP 3</strong> Create a new terminal by clicking on the green cross, and click <strong>New Terminal</strong>.</p>
+<p><img src="/aws-cicd-cdk-workshop/images/content/screenshot-2-2.png" alt="screenshot-2-2"></p>
 <p><strong>STEP 4</strong> In the new terminal, go to our app by executing this command.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd myapp
 </code></pre></div><p><strong>STEP 5</strong> You need to compile your Typescript code to Javascript everytime you create or update a Typescript file. To do that execute the code below.</p>
@@ -497,6 +501,7 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Stack ARN:
 arn:aws:cloudformation:us-east-1:1234567890:stack/MyappStack/aaaaaaaa-bbbb-cccc-dddd-ffffffffffff
 </code></pre></div><p>To check whether the stack is deployed, open <a href="https://console.aws.amazon.com/cloudformation/"><strong>CloudFormation console</strong></a> and see if a new stack <strong>MyappStack</strong> is deployed.</p>
+<p><img src="/aws-cicd-cdk-workshop/images/content/screenshot-2-3.png" alt="screenshot-2-3"></p>
 <p><strong>NOTE</strong>
 If in the next <code>cdk deploy</code>, your IDE shows insufficient space, try deleting the content of the <code>cdk.out</code> directory by executing the following command in the project root directory.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">rm -rf cdk.out/*
@@ -770,19 +775,19 @@ If in the next <code>cdk deploy</code>, your IDE shows insufficient space, try d
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/aws-cicd-cdk-workshop/js/clipboard.min.js?1605058824"></script>
-    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.min.js?1605058824"></script>
-    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.jquery.min.js?1605058824"></script>
-    <script src="/aws-cicd-cdk-workshop/js/jquery.sticky.js?1605058824"></script>
-    <script src="/aws-cicd-cdk-workshop/js/featherlight.min.js?1605058824"></script>
-    <script src="/aws-cicd-cdk-workshop/js/highlight.pack.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/clipboard.min.js?1605060362"></script>
+    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.min.js?1605060362"></script>
+    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.jquery.min.js?1605060362"></script>
+    <script src="/aws-cicd-cdk-workshop/js/jquery.sticky.js?1605060362"></script>
+    <script src="/aws-cicd-cdk-workshop/js/featherlight.min.js?1605060362"></script>
+    <script src="/aws-cicd-cdk-workshop/js/highlight.pack.js?1605060362"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/aws-cicd-cdk-workshop/js/modernizr.custom-3.6.0.js?1605058824"></script>
-    <script src="/aws-cicd-cdk-workshop/js/learn.js?1605058824"></script>
-    <script src="/aws-cicd-cdk-workshop/js/hugo-learn.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/modernizr.custom-3.6.0.js?1605060362"></script>
+    <script src="/aws-cicd-cdk-workshop/js/learn.js?1605060362"></script>
+    <script src="/aws-cicd-cdk-workshop/js/hugo-learn.js?1605060362"></script>
     
         
-            <script src="/aws-cicd-cdk-workshop/mermaid/mermaid.js?1605058824"></script>
+            <script src="/aws-cicd-cdk-workshop/mermaid/mermaid.js?1605060362"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });

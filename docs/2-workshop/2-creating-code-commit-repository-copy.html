@@ -12,21 +12,21 @@
     <title>2. Creating CodeCommit Repository :: CI/CD using AWS CDK Workshop</title>
 
     
-    <link href="/aws-cicd-cdk-workshop/css/nucleus.css?1605058824" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/fontawesome-all.min.css?1605058824" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/hybrid.css?1605058824" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/featherlight.min.css?1605058824" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/perfect-scrollbar.min.css?1605058824" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/auto-complete.css?1605058824" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/atom-one-dark-reasonable.css?1605058824" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/theme.css?1605058824" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/hugo-theme.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/nucleus.css?1605060362" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/fontawesome-all.min.css?1605060362" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/hybrid.css?1605060362" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/featherlight.min.css?1605060362" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/perfect-scrollbar.min.css?1605060362" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/auto-complete.css?1605060362" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/atom-one-dark-reasonable.css?1605060362" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/theme.css?1605060362" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/hugo-theme.css?1605060362" rel="stylesheet">
     
-    <link href="/aws-cicd-cdk-workshop/css/theme-mine.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/theme-mine.css?1605060362" rel="stylesheet">
     
     
 
-    <script src="/aws-cicd-cdk-workshop/js/jquery-3.3.1.min.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/jquery-3.3.1.min.js?1605060362"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,14 +52,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/lunr.min.js?1605058824"></script>
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/auto-complete.js?1605058824"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/lunr.min.js?1605060362"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/auto-complete.js?1605060362"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/petrabarus.github.io\/aws-cicd-cdk-workshop\/";
     
 </script>
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/search.js?1605058824"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/search.js?1605060362"></script>
 
     
   </div>
@@ -506,7 +506,9 @@
 </code></pre></div><p><strong>STEP 3</strong> Deploy the CDK application. Execute command below.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cdk deploy
 </code></pre></div><p>To check our newly created repository, open <a href="https://console.aws.amazon.com/codesuite/home"><strong>AWS CodeCommit console</strong></a>.</p>
+<p><img src="/aws-cicd-cdk-workshop/images/content/screenshot-2-2-1.png" alt="screenshot-2-2-1"></p>
 <p>If you open the created repository, you will see that the repository is still empty.</p>
+<p><img src="/aws-cicd-cdk-workshop/images/content/screenshot-2-2-2.png" alt="screenshot-2-2-2"></p>
 <h3 id="committing-code-to-aws-codecommit-repository">Committing Code to AWS CodeCommit Repository.</h3>
 <p>Here you will commit our code to the newly created repository.</p>
 <p><strong>STEP 1</strong> To add the repository as remote repository, execute command below.</p>
@@ -517,6 +519,7 @@ git commit -m <span style="color:#e6db74">&#34;Add codecommit repository.&#34;</
 </code></pre></div><p><strong>STEP 3</strong> To push the committed code to the repository, execute command below.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git push origin master
 </code></pre></div><p>If you reopen the repository again in the console, you will see the committed code is now stored in the repository.</p>
+<p><img src="/aws-cicd-cdk-workshop/images/content/screenshot-2-2-3.png" alt="screenshot-2-2-3"></p>
 <p>Click the orange arrow on the right hand side to continue to next step.</p>
 
 
@@ -787,19 +790,19 @@ git commit -m <span style="color:#e6db74">&#34;Add codecommit repository.&#34;</
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/aws-cicd-cdk-workshop/js/clipboard.min.js?1605058824"></script>
-    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.min.js?1605058824"></script>
-    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.jquery.min.js?1605058824"></script>
-    <script src="/aws-cicd-cdk-workshop/js/jquery.sticky.js?1605058824"></script>
-    <script src="/aws-cicd-cdk-workshop/js/featherlight.min.js?1605058824"></script>
-    <script src="/aws-cicd-cdk-workshop/js/highlight.pack.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/clipboard.min.js?1605060362"></script>
+    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.min.js?1605060362"></script>
+    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.jquery.min.js?1605060362"></script>
+    <script src="/aws-cicd-cdk-workshop/js/jquery.sticky.js?1605060362"></script>
+    <script src="/aws-cicd-cdk-workshop/js/featherlight.min.js?1605060362"></script>
+    <script src="/aws-cicd-cdk-workshop/js/highlight.pack.js?1605060362"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/aws-cicd-cdk-workshop/js/modernizr.custom-3.6.0.js?1605058824"></script>
-    <script src="/aws-cicd-cdk-workshop/js/learn.js?1605058824"></script>
-    <script src="/aws-cicd-cdk-workshop/js/hugo-learn.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/modernizr.custom-3.6.0.js?1605060362"></script>
+    <script src="/aws-cicd-cdk-workshop/js/learn.js?1605060362"></script>
+    <script src="/aws-cicd-cdk-workshop/js/hugo-learn.js?1605060362"></script>
     
         
-            <script src="/aws-cicd-cdk-workshop/mermaid/mermaid.js?1605058824"></script>
+            <script src="/aws-cicd-cdk-workshop/mermaid/mermaid.js?1605060362"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });
