@@ -160,7 +160,13 @@ cdk deploy
 
 Input `y` on the prompt.
 
-To see the newly created pipeline, open the [**CodePipeline console**](https://console.aws.amazon.com/codepipeline/home). You will see that you will have a new pipeline with 2 stage: Source and Build.
+To see the newly created pipeline, open the [**CodePipeline console**](https://console.aws.amazon.com/codepipeline/home). You will see you have a new pipeline.
+
+![screenshot-2-5-0](/aws-cicd-cdk-workshop/images/content/screenshot-2-5-0.png)
+
+Open the new pipeline, you will have 2 stages: Source and Build
+
+![screenshot-2-5-1](/aws-cicd-cdk-workshop/images/content/screenshot-2-5-1.png)
 
 You now may see the Build process fails. In the next part you will push the code that will trigger a success build.
 
@@ -178,8 +184,16 @@ git push origin master
 
 Open the pipeline again in the CodePipeline console. You will see that a build process now is in progress.
 
+![screenshot-2-5-2](/aws-cicd-cdk-workshop/images/content/screenshot-2-5-2.png)
+
 You can click on the **Details** in the Build stage to monitor the process.
 
+![screenshot-2-5-5](/aws-cicd-cdk-workshop/images/content/screenshot-2-5-5.png)
+
 When the build process finishes, open our ECR repository again and you will see a new image has been pushed.
+
+![screenshot-2-5-3](/aws-cicd-cdk-workshop/images/content/screenshot-2-5-3.png)
+
+![screenshot-2-5-4](/aws-cicd-cdk-workshop/images/content/screenshot-2-5-4.png)
 
 Click the orange arrow on the right hand side to continue to final part of this workshop.

@@ -96,7 +96,11 @@ Please wait for a while for CDK to complete the command. By the end of the comma
 
 ![screenshot-2-3-2](/aws-cicd-cdk-workshop/images/content/screenshot-2-3-2.png)
 
-The `ServiceServiceURL` will contain the URL where you can check the application. Open the URL to check the application.
+The `ServiceServiceURL` will contain the URL where you can check the application.
+
+![screenshot-2-3-6](/aws-cicd-cdk-workshop/images/content/screenshot-2-3-6.png)
+
+Open the URL to check the application.
 
 ![screenshot-2-3-4](/aws-cicd-cdk-workshop/images/content/screenshot-2-3-4.png)
 

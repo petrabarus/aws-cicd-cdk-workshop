@@ -72,7 +72,8 @@ AWS CodePipeline is a fully managed continuous delivery service that helps you a
       
       <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/2-workshop/6-creating-deploy-pipeline.html</guid>
       <description>In this part you are going to create a final stage of the pipeline &amp;ldquo;Deploy&amp;rdquo; where the newly created image will be deployed to the ECS cluster.
-STEP 1
+We already have required CDK constructs, so there will be no construct library installation steps here.
+STEP 1 lib/myapp-stack.ts with this.
 import * as cdk from &amp;#39;@aws-cdk/core&amp;#39;; import * as codecommit from &amp;#39;@aws-cdk/aws-codecommit&amp;#39;; import * as ecs from &amp;#39;@aws-cdk/aws-ecs&amp;#39;; import * as ecsPatterns from &amp;#39;@aws-cdk/aws-ecs-patterns&amp;#39;; import * as ecr from &amp;#39;@aws-cdk/aws-ecr&amp;#39;; import * as codebuild from &amp;#39;@aws-cdk/aws-codebuild&amp;#39;; import * as codepipeline from &amp;#39;@aws-cdk/aws-codepipeline&amp;#39;; import * as codepipelineActions from &amp;#39;@aws-cdk/aws-codepipeline-actions&amp;#39;; export class MyappStack extends cdk.</description>
     </item>
     

@@ -5,7 +5,9 @@ weight = 6
 
 In this part you are going to create a final stage of the pipeline "Deploy" where the newly created image will be deployed to the ECS cluster.
 
-**STEP 1**
+We already have required CDK constructs, so there will be no construct library installation steps here.
+
+**STEP 1** `lib/myapp-stack.ts` with this.
 
 ```typescript
 import * as cdk from '@aws-cdk/core';
@@ -120,14 +122,17 @@ export class MyappStack extends cdk.Stack {
   
   createStageDeploy(input: codepipeline.Artifact): codepipeline.StageOptions {
     this.imageRepository.grantPull(this.service.taskDefinition.executionRole!);
+
+    const action = new codepipelineActions.EcsDeployAction({
+      actionName: 'ProductionEcsDeployAction',
+      input: input,
+      service: this.service,
+    });
+
     return {
         stageName: 'DeployToProduction',
         actions: [
-          new codepipelineActions.EcsDeployAction({
-            actionName: 'ProductionEcsDeployAction',
-            input: input,
-            service: this.service,
-          })
+          action
         ],
     };
   }
@@ -142,7 +147,9 @@ cdk deploy
 
 Input `y` on the prompt.
 
-When the progess finishes, check the pipeline again and you will see that now you have one additional stage "Deploy". 
+When the progess finishes, check the pipeline again and you will see that now you have one additional stage "DeployToProduction". 
+
+![screenshot-2-6-1](/aws-cicd-cdk-workshop/images/content/screenshot-2-6-1.png)
 
 Next you will commit a code to deploy to the Amazon ECS cluster.
 
@@ -163,6 +170,14 @@ git push origin master
 
 Open the pipeline again and you will see the build started.
 
+![screenshot-2-6-3](/aws-cicd-cdk-workshop/images/content/screenshot-2-6-3.png)
+
 You wait for few minutes for the deploy to finish. When the pipeline finish, open the load balancer URL.
 
 You will see the new HTML code deployed. If it hasn't yet, wait for few more minutes, it takes some time for the cluster to deploy.
+
+![screenshot-2-6-2](/aws-cicd-cdk-workshop/images/content/screenshot-2-6-2.png)
+
+Congratulations, you now have successfully build a new CI/CD Pipeline using AWS CDK!
+
+Click the orange arrow on the right hand side to continue to clean up all the resources.
