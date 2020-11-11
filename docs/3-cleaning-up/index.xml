@@ -15,8 +15,10 @@
       <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/3-cleaning-up/1-cleaning-cdk-resources.html</guid>
       <description>In this part you will remove all resources that provisioned by AWS CDK.
 STEP 1 In the terminal execute the command below. This will remove the stack that you created previously.
-cdk destroy STEP 2 Execute
-Click the orange arrow on the right hand side to continue.</description>
+cdk destroy Input y when prompted &amp;ldquo;Are you sure you want to delete: MyappStack (y/n)?&amp;rdquo;.
+The process will take a while.
+STEP 2 Execute the command below to delete the CDK assets resources.
+aws s3 rm --recursive s3://$(aws s3 ls | grep cdktoolkit | head -n 1 | cut -d&amp;#39; &amp;#39; -f3) aws cloudformation delete-stack --stack-name CDKToolkit Click the orange arrow on the right hand side to continue.</description>
     </item>
     
     <item>
@@ -27,7 +29,8 @@ Click the orange arrow on the right hand side to continue.</description>
       <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/3-cleaning-up/2-deleting-cloud9-environment.html</guid>
       <description>In this part you will delete the AWS Cloud9 environment you created.
 STEP 1 Open the Cloud9 console.
-STEP 2 Choose the Cloud9 IDE that you created.</description>
+STEP 2 Choose the Cloud9 IDE that you created.
+STEP 3 Click DELETE</description>
     </item>
     
   </channel>

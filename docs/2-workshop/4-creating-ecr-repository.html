@@ -12,21 +12,21 @@
     <title>4. Creating ECR Container Image Repository :: CI/CD using AWS CDK Workshop</title>
 
     
-    <link href="/aws-cicd-cdk-workshop/css/nucleus.css?1605060362" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/fontawesome-all.min.css?1605060362" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/hybrid.css?1605060362" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/featherlight.min.css?1605060362" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/perfect-scrollbar.min.css?1605060362" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/auto-complete.css?1605060362" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/atom-one-dark-reasonable.css?1605060362" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/theme.css?1605060362" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/hugo-theme.css?1605060362" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/nucleus.css?1605062174" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/fontawesome-all.min.css?1605062174" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/hybrid.css?1605062174" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/featherlight.min.css?1605062174" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/perfect-scrollbar.min.css?1605062174" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/auto-complete.css?1605062174" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/atom-one-dark-reasonable.css?1605062174" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/theme.css?1605062174" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/hugo-theme.css?1605062174" rel="stylesheet">
     
-    <link href="/aws-cicd-cdk-workshop/css/theme-mine.css?1605060362" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/theme-mine.css?1605062174" rel="stylesheet">
     
     
 
-    <script src="/aws-cicd-cdk-workshop/js/jquery-3.3.1.min.js?1605060362"></script>
+    <script src="/aws-cicd-cdk-workshop/js/jquery-3.3.1.min.js?1605062174"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,14 +52,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/lunr.min.js?1605060362"></script>
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/auto-complete.js?1605060362"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/lunr.min.js?1605062174"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/auto-complete.js?1605062174"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/petrabarus.github.io\/aws-cicd-cdk-workshop\/";
     
 </script>
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/search.js?1605060362"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/search.js?1605062174"></script>
 
     
   </div>
@@ -533,11 +533,19 @@
 </code></pre></div><p><strong>STEP 3</strong> To apply the changes, execute the command below.</p>
 <pre><code>cdk deploy
 </code></pre><p>When the deploy finished, you will see the URL of the new ECR repository in the output.</p>
+<p><img src="/aws-cicd-cdk-workshop/images/content/screenshot-2-4-0.png" alt="screenshot-2-4-0"></p>
 <p>To see the created ECR repository, visit the <a href="https://console.aws.amazon.com/ecr/home"><strong>ECR console</strong></a>. You will see a new repository created.</p>
+<p><img src="/aws-cicd-cdk-workshop/images/content/screenshot-2-4-1.png" alt="screenshot-2-4-1"></p>
 <p>If you click on the new repository, you will see that there is no image stored yet.</p>
+<p><img src="/aws-cicd-cdk-workshop/images/content/screenshot-2-4-2.png" alt="screenshot-2-4-2"></p>
 <h3 id="pushing-new-image-to-ecr-repository">Pushing New Image to ECR Repository</h3>
 <p>Now you are going to try pushing a new image to the ECR repository.</p>
+<p>Click on the <strong>View push commands</strong>, you will see steps and commands to execute to build local image and push it to the ECR repository.</p>
+<p><img src="/aws-cicd-cdk-workshop/images/content/screenshot-2-4-3.png" alt="screenshot-2-4-3"></p>
+<p>The execution will look like something below.</p>
+<p><img src="/aws-cicd-cdk-workshop/images/content/screenshot-2-4-4.png" alt="screenshot-2-4-4"></p>
 <p>Try refreshing the new ECR repository in the ECR console. Now you will see that you have a new image created.</p>
+<p><img src="/aws-cicd-cdk-workshop/images/content/screenshot-2-4-5.png" alt="screenshot-2-4-5"></p>
 <p>Click the orange arrow on the right hand side to continue to next step.</p>
 
 
@@ -808,19 +816,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/aws-cicd-cdk-workshop/js/clipboard.min.js?1605060362"></script>
-    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.min.js?1605060362"></script>
-    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.jquery.min.js?1605060362"></script>
-    <script src="/aws-cicd-cdk-workshop/js/jquery.sticky.js?1605060362"></script>
-    <script src="/aws-cicd-cdk-workshop/js/featherlight.min.js?1605060362"></script>
-    <script src="/aws-cicd-cdk-workshop/js/highlight.pack.js?1605060362"></script>
+    <script src="/aws-cicd-cdk-workshop/js/clipboard.min.js?1605062174"></script>
+    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.min.js?1605062174"></script>
+    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.jquery.min.js?1605062174"></script>
+    <script src="/aws-cicd-cdk-workshop/js/jquery.sticky.js?1605062174"></script>
+    <script src="/aws-cicd-cdk-workshop/js/featherlight.min.js?1605062174"></script>
+    <script src="/aws-cicd-cdk-workshop/js/highlight.pack.js?1605062174"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/aws-cicd-cdk-workshop/js/modernizr.custom-3.6.0.js?1605060362"></script>
-    <script src="/aws-cicd-cdk-workshop/js/learn.js?1605060362"></script>
-    <script src="/aws-cicd-cdk-workshop/js/hugo-learn.js?1605060362"></script>
+    <script src="/aws-cicd-cdk-workshop/js/modernizr.custom-3.6.0.js?1605062174"></script>
+    <script src="/aws-cicd-cdk-workshop/js/learn.js?1605062174"></script>
+    <script src="/aws-cicd-cdk-workshop/js/hugo-learn.js?1605062174"></script>
     
         
-            <script src="/aws-cicd-cdk-workshop/mermaid/mermaid.js?1605060362"></script>
+            <script src="/aws-cicd-cdk-workshop/mermaid/mermaid.js?1605062174"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });
