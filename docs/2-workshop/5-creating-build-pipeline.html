@@ -12,21 +12,21 @@
     <title>5. Creating Build Pipeline :: CI/CD using AWS CDK Workshop</title>
 
     
-    <link href="/aws-cicd-cdk-workshop/css/nucleus.css?1605062256" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/fontawesome-all.min.css?1605062256" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/hybrid.css?1605062256" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/featherlight.min.css?1605062256" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/perfect-scrollbar.min.css?1605062256" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/auto-complete.css?1605062256" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/atom-one-dark-reasonable.css?1605062256" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/theme.css?1605062256" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/hugo-theme.css?1605062256" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/nucleus.css?1605064339" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/fontawesome-all.min.css?1605064339" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/hybrid.css?1605064339" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/featherlight.min.css?1605064339" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/perfect-scrollbar.min.css?1605064339" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/auto-complete.css?1605064339" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/atom-one-dark-reasonable.css?1605064339" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/theme.css?1605064339" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/hugo-theme.css?1605064339" rel="stylesheet">
     
-    <link href="/aws-cicd-cdk-workshop/css/theme-mine.css?1605062256" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/theme-mine.css?1605064339" rel="stylesheet">
     
     
 
-    <script src="/aws-cicd-cdk-workshop/js/jquery-3.3.1.min.js?1605062256"></script>
+    <script src="/aws-cicd-cdk-workshop/js/jquery-3.3.1.min.js?1605064339"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,14 +52,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/lunr.min.js?1605062256"></script>
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/auto-complete.js?1605062256"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/lunr.min.js?1605064339"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/auto-complete.js?1605064339"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/petrabarus.github.io\/aws-cicd-cdk-workshop\/";
     
 </script>
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/search.js?1605062256"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/search.js?1605064339"></script>
 
     
   </div>
@@ -618,7 +618,10 @@
 </code></pre></div><p><strong>STEP 4</strong> Execute following line to apply the change.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cdk deploy
 </code></pre></div><p>Input <code>y</code> on the prompt.</p>
-<p>To see the newly created pipeline, open the <a href="https://console.aws.amazon.com/codepipeline/home"><strong>CodePipeline console</strong></a>. You will see that you will have a new pipeline with 2 stage: Source and Build.</p>
+<p>To see the newly created pipeline, open the <a href="https://console.aws.amazon.com/codepipeline/home"><strong>CodePipeline console</strong></a>. You will see you have a new pipeline.</p>
+<p><img src="/aws-cicd-cdk-workshop/images/content/screenshot-2-5-0.png" alt="screenshot-2-5-0"></p>
+<p>Open the new pipeline, you will have 2 stages: Source and Build</p>
+<p><img src="/aws-cicd-cdk-workshop/images/content/screenshot-2-5-1.png" alt="screenshot-2-5-1"></p>
 <p>You now may see the Build process fails. In the next part you will push the code that will trigger a success build.</p>
 <h3 id="committing-code-to-trigger-build">Committing Code to Trigger Build</h3>
 <p>Now you are going to trigger the build process by committing a new code.</p>
@@ -627,8 +630,12 @@
 git commit -m <span style="color:#e6db74">&#34;Add build pipeline.&#34;</span>
 git push origin master
 </code></pre></div><p>Open the pipeline again in the CodePipeline console. You will see that a build process now is in progress.</p>
+<p><img src="/aws-cicd-cdk-workshop/images/content/screenshot-2-5-2.png" alt="screenshot-2-5-2"></p>
 <p>You can click on the <strong>Details</strong> in the Build stage to monitor the process.</p>
+<p><img src="/aws-cicd-cdk-workshop/images/content/screenshot-2-5-5.png" alt="screenshot-2-5-5"></p>
 <p>When the build process finishes, open our ECR repository again and you will see a new image has been pushed.</p>
+<p><img src="/aws-cicd-cdk-workshop/images/content/screenshot-2-5-3.png" alt="screenshot-2-5-3"></p>
+<p><img src="/aws-cicd-cdk-workshop/images/content/screenshot-2-5-4.png" alt="screenshot-2-5-4"></p>
 <p>Click the orange arrow on the right hand side to continue to final part of this workshop.</p>
 
 
@@ -899,19 +906,19 @@ git push origin master
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/aws-cicd-cdk-workshop/js/clipboard.min.js?1605062256"></script>
-    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.min.js?1605062256"></script>
-    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.jquery.min.js?1605062256"></script>
-    <script src="/aws-cicd-cdk-workshop/js/jquery.sticky.js?1605062256"></script>
-    <script src="/aws-cicd-cdk-workshop/js/featherlight.min.js?1605062256"></script>
-    <script src="/aws-cicd-cdk-workshop/js/highlight.pack.js?1605062256"></script>
+    <script src="/aws-cicd-cdk-workshop/js/clipboard.min.js?1605064339"></script>
+    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.min.js?1605064339"></script>
+    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.jquery.min.js?1605064339"></script>
+    <script src="/aws-cicd-cdk-workshop/js/jquery.sticky.js?1605064339"></script>
+    <script src="/aws-cicd-cdk-workshop/js/featherlight.min.js?1605064339"></script>
+    <script src="/aws-cicd-cdk-workshop/js/highlight.pack.js?1605064339"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/aws-cicd-cdk-workshop/js/modernizr.custom-3.6.0.js?1605062256"></script>
-    <script src="/aws-cicd-cdk-workshop/js/learn.js?1605062256"></script>
-    <script src="/aws-cicd-cdk-workshop/js/hugo-learn.js?1605062256"></script>
+    <script src="/aws-cicd-cdk-workshop/js/modernizr.custom-3.6.0.js?1605064339"></script>
+    <script src="/aws-cicd-cdk-workshop/js/learn.js?1605064339"></script>
+    <script src="/aws-cicd-cdk-workshop/js/hugo-learn.js?1605064339"></script>
     
         
-            <script src="/aws-cicd-cdk-workshop/mermaid/mermaid.js?1605062256"></script>
+            <script src="/aws-cicd-cdk-workshop/mermaid/mermaid.js?1605064339"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });

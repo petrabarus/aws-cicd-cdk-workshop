@@ -30,7 +30,10 @@ aws s3 rm --recursive s3://$(aws s3 ls | grep cdktoolkit | head -n 1 | cut -d&am
       <description>In this part you will delete the AWS Cloud9 environment you created.
 STEP 1 Open the Cloud9 console.
 STEP 2 Choose the Cloud9 IDE that you created.
-STEP 3 Click DELETE</description>
+STEP 3 Click DELETE
+STEP 4 When prompt on confirmation, type &amp;ldquo;Delete&amp;rdquo; and click button Delete to proceed.
+Now you have clean up your resources and finished all the workshop.
+Don&amp;rsquo;t forget to send feedback for future improvements! See you on the next workshop!</description>
     </item>
     
   </channel>
