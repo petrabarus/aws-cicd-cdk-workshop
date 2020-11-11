@@ -10,4 +10,9 @@ pre = "<b>3. </b>"
 
 # Cleaning Up
 
-Lorem Ipsum.
+In this part you will clean up the provisioned resources to avoid getting unnecessary cost charged to your AWS account. 
+
+**NOTE**
+Another warning: Failure to clean up will cause additional cost incurring to your AWS account.
+
+Click the orange arrow on the right hand side to continue.

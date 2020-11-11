@@ -10,4 +10,6 @@ pre = "<b>2. </b>"
 
 # Building CI/CD Pipeline using AWS CDK
 
-Lorem Ipsum.
+Now you are going to start working on building CI/CD Pipeline using AWS CDK. 
+
+Click the orange arrow on the right hand side to continue to start the workshop.

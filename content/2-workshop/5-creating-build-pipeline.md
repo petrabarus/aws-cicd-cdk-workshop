@@ -3,12 +3,19 @@ title = "5. Creating Build Pipeline"
 weight = 5
 +++
 
-Install CodePipeline and CodeBuild dependencies.
-```
-npm i @aws-cdk/aws-iam @aws-cdk/aws-codebuild @aws-cdk/aws-codepipeline  @aws-cdk/aws-codepipeline-actions
+In this step, you are going to create a CI/CD pipeline where you will build a container image on new commit and store the image in our new ECR repository.
+
+AWS CodePipeline is a fully managed continuous delivery service that helps you automate your release pipelines for fast and reliable application and infrastructure updates. CodePipeline automates the build, test, and deploy phases of your release process every time there is a code change, based on the release model you define. AWS CodeBuild is a fully managed continuous integration service that compiles source code, runs tests, and produces software packages that are ready to deploy. With CodeBuild, you don’t need to provision, manage, and scale your own build servers.
+
+
+
+**STEP 1** You are going to need to install CodePipeline and CodeBuild construct libraries. Execute command below.
+
+```bash
+npm i @aws-cdk/aws-codebuild @aws-cdk/aws-codepipeline  @aws-cdk/aws-codepipeline-actions
 ```
 
-Create file `buildspec.yml` in the root directory of the application.
+**STEP 2** Create file `buildspec.yml` in the root directory of the application. This file will serve as build definition that we are
 ```yml
 version: '0.2'
 phases:
@@ -33,7 +40,8 @@ artifacts:
 
 ```
 
-Overwrite file `myapp-stack.ts` with this.
+
+**STEP 3** Overwrite file `lib/myapp-stack.ts` with this.
 ```typescript
 import * as cdk from '@aws-cdk/core';
 import * as codecommit from '@aws-cdk/aws-codecommit';
@@ -47,9 +55,9 @@ import * as codepipelineActions from '@aws-cdk/aws-codepipeline-actions';
 export class MyappStack extends cdk.Stack {
   private codeRepository: codecommit.Repository;
   private cluster: ecs.Cluster;
-  private service: ecs.IService;
+  private service: ecs.BaseService;
   private imageRepository: ecr.Repository;
-  
+
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
@@ -60,7 +68,7 @@ export class MyappStack extends cdk.Stack {
   }
   
   createCodeCommitRepository() {
-    this.codeRepository = new codecommit.Repository(this, 'Repository', {
+    this.codeRepository = new codecommit.Repository(this, 'CodeRepository', {
       repositoryName: 'MyRepository'
     });
   }
@@ -101,56 +109,77 @@ export class MyappStack extends cdk.Stack {
   }
   
   createStageSource(output: codepipeline.Artifact): codepipeline.StageOptions {    
+    const action = new codepipelineActions.CodeCommitSourceAction({
+      actionName: 'CodeCommit',
+      repository: this.codeRepository,
+      output: output,
+    });
     return {
       stageName: 'Source',
       actions: [
-        new codepipelineActions.CodeCommitSourceAction({
-            actionName: 'CodeCommit',
-            repository: this.codeRepository,
-            output: output,
-        })
+        action    
       ]
     };
   }
   
   createStageBuild(input: codepipeline.Artifact, output: codepipeline.Artifact): codepipeline.StageOptions {
     const project = new codebuild.PipelineProject(this, 'ImageBuildProject', {
-            environment: {
-                buildImage: codebuild.LinuxBuildImage.STANDARD_2_0,
-                privileged: true,
-            },
-            buildSpec: codebuild.BuildSpec.fromSourceFilename('buildspec.yml'),
-            environmentVariables: {
-                REPOSITORY_URI: {value: this.imageRepository.repositoryUri},
-                CONTAINER_NAME: {value: "web"},
-            }
-        });
+      environment: {
+        buildImage: codebuild.LinuxBuildImage.STANDARD_2_0,
+        privileged: true,
+      },
+      buildSpec: codebuild.BuildSpec.fromSourceFilename('buildspec.yml'),
+      environmentVariables: {
+        REPOSITORY_URI: {value: this.imageRepository.repositoryUri},
+        CONTAINER_NAME: {value: "web"},
+      }
+    });
 
     this.imageRepository.grantPullPush(project.grantPrincipal);
+    
+    const action = new codepipelineActions.CodeBuildAction({
+      actionName: 'ImageBuildAction',
+      input: input,
+      outputs: [output],
+      project: project,
+    });
+    
     return {
       stageName: 'Build',
       actions: [
-        new codepipelineActions.CodeBuildAction({
-            actionName: 'ImageBuildAction',
-            input: input,
-            outputs: [output],
-            project: project,
-        })
+        action
       ]
     };
   }
 }
-
 ```
-
-Execute following line to apply the change.
+**STEP 4** Execute following line to apply the change.
 ```bash
 cdk deploy
 ```
 
-Now we commit the change.
+Input `y` on the prompt.
+
+To see the newly created pipeline, open the [**CodePipeline console**](https://console.aws.amazon.com/codepipeline/home). You will see that you will have a new pipeline with 2 stage: Source and Build.
+
+You now may see the Build process fails. In the next part you will push the code that will trigger a success build.
+
+### Committing Code to Trigger Build
+
+Now you are going to trigger the build process by committing a new code.
+
+**STEP 1** Since you haven't committed any new code yet, now it's time to push the changes to git.
+
 ```bash
 git add .
 git commit -m "Add build pipeline."
 git push origin master
 ```
+
+Open the pipeline again in the CodePipeline console. You will see that a build process now is in progress.
+
+You can click on the **Details** in the Build stage to monitor the process.
+
+When the build process finishes, open our ECR repository again and you will see a new image has been pushed.
+
+Click the orange arrow on the right hand side to continue to final part of this workshop.

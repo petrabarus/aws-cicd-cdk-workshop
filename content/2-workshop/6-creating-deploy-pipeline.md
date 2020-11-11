@@ -3,6 +3,10 @@ title = "6. Creating Deploy Stage"
 weight = 6
 +++
 
+In this part you are going to create a final stage of the pipeline "Deploy" where the newly created image will be deployed to the ECS cluster.
+
+**STEP 1**
+
 ```typescript
 import * as cdk from '@aws-cdk/core';
 import * as codecommit from '@aws-cdk/aws-codecommit';
@@ -18,7 +22,7 @@ export class MyappStack extends cdk.Stack {
   private cluster: ecs.Cluster;
   private service: ecs.BaseService;
   private imageRepository: ecr.Repository;
-  
+
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
@@ -29,7 +33,7 @@ export class MyappStack extends cdk.Stack {
   }
   
   createCodeCommitRepository() {
-    this.codeRepository = new codecommit.Repository(this, 'Repository', {
+    this.codeRepository = new codecommit.Repository(this, 'CodeRepository', {
       repositoryName: 'MyRepository'
     });
   }
@@ -41,7 +45,7 @@ export class MyappStack extends cdk.Stack {
       memoryLimitMiB: 1024,
       cpu: 512,
       taskImageOptions: {
-        image: ecs.ContainerImage.fromRegistry('nginx:latest'),
+        image: ecs.ContainerImage.fromAsset('.'),
         containerName: 'web',
       },
     });
@@ -71,14 +75,15 @@ export class MyappStack extends cdk.Stack {
   }
   
   createStageSource(output: codepipeline.Artifact): codepipeline.StageOptions {    
+    const action = new codepipelineActions.CodeCommitSourceAction({
+      actionName: 'CodeCommit',
+      repository: this.codeRepository,
+      output: output,
+    });
     return {
       stageName: 'Source',
       actions: [
-        new codepipelineActions.CodeCommitSourceAction({
-            actionName: 'CodeCommit',
-            repository: this.codeRepository,
-            output: output,
-        })
+        action    
       ]
     };
   }
@@ -90,22 +95,25 @@ export class MyappStack extends cdk.Stack {
         privileged: true,
       },
       buildSpec: codebuild.BuildSpec.fromSourceFilename('buildspec.yml'),
-        environmentVariables: {
-          REPOSITORY_URI: {value: this.imageRepository.repositoryUri},
-          CONTAINER_NAME: {value: "web"},
-        }
+      environmentVariables: {
+        REPOSITORY_URI: {value: this.imageRepository.repositoryUri},
+        CONTAINER_NAME: {value: "web"},
+      }
     });
 
     this.imageRepository.grantPullPush(project.grantPrincipal);
+    
+    const action = new codepipelineActions.CodeBuildAction({
+      actionName: 'ImageBuildAction',
+      input: input,
+      outputs: [output],
+      project: project,
+    });
+    
     return {
       stageName: 'Build',
       actions: [
-        new codepipelineActions.CodeBuildAction({
-            actionName: 'ImageBuildAction',
-            input: input,
-            outputs: [output],
-            project: project,
-        })
+        action
       ]
     };
   }
@@ -126,10 +134,19 @@ export class MyappStack extends cdk.Stack {
 }
 ```
 
-Apply the change.
+**STEP 2** To apply the change, execute the command below.
+
 ```bash
 cdk deploy
 ```
+
+Input `y` on the prompt.
+
+When the progess finishes, check the pipeline again and you will see that now you have one additional stage "Deploy". 
+
+Next you will commit a code to deploy to the Amazon ECS cluster.
+
+### Committing Code to Trigger Deploy
 
 Try editing the `src/index.html` to new value.
 
@@ -144,3 +161,8 @@ git commit -m "add deploy."
 git push origin master
 ```
 
+Open the pipeline again and you will see the build started.
+
+You wait for few minutes for the deploy to finish. When the pipeline finish, open the load balancer URL.
+
+You will see the new HTML code deployed. If it hasn't yet, wait for few more minutes, it takes some time for the cluster to deploy.
