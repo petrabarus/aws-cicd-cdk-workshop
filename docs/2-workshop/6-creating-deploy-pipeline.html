@@ -12,21 +12,21 @@
     <title>6. Creating Deploy Stage :: CI/CD using AWS CDK Workshop</title>
 
     
-    <link href="/aws-cicd-cdk-workshop/css/nucleus.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/fontawesome-all.min.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/hybrid.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/featherlight.min.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/perfect-scrollbar.min.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/auto-complete.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/atom-one-dark-reasonable.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/theme.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/hugo-theme.css?1605002997" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/nucleus.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/fontawesome-all.min.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/hybrid.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/featherlight.min.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/perfect-scrollbar.min.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/auto-complete.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/atom-one-dark-reasonable.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/theme.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/hugo-theme.css?1605058824" rel="stylesheet">
     
-    <link href="/aws-cicd-cdk-workshop/css/theme-mine.css?1605002997" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/theme-mine.css?1605058824" rel="stylesheet">
     
     
 
-    <script src="/aws-cicd-cdk-workshop/js/jquery-3.3.1.min.js?1605002997"></script>
+    <script src="/aws-cicd-cdk-workshop/js/jquery-3.3.1.min.js?1605058824"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,14 +52,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/lunr.min.js?1605002997"></script>
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/auto-complete.js?1605002997"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/lunr.min.js?1605058824"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/auto-complete.js?1605058824"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/petrabarus.github.io\/aws-cicd-cdk-workshop\/";
     
 </script>
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/search.js?1605002997"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/search.js?1605058824"></script>
 
     
   </div>
@@ -243,9 +243,9 @@
  
   
     
-      <li data-nav-id="/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html" title="4. Creating ECS Cluster" class="dd-item ">
+      <li data-nav-id="/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html" title="4. Creating ECR Container Image Repository" class="dd-item ">
         <a href="/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html">
-        4. Creating ECS Cluster
+        4. Creating ECR Container Image Repository
         
         </a>
     </li>
@@ -448,7 +448,15 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#committing-code-to-trigger-deploy">Committing Code to Trigger Deploy</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -471,6 +479,8 @@
         
 
 
+<p>In this part you are going to create a final stage of the pipeline &ldquo;Deploy&rdquo; where the newly created image will be deployed to the ECS cluster.</p>
+<p><strong>STEP 1</strong></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">cdk</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@aws-cdk/core&#39;</span>;
 <span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">codecommit</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@aws-cdk/aws-codecommit&#39;</span>;
 <span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">ecs</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@aws-cdk/aws-ecs&#39;</span>;
@@ -485,7 +495,7 @@
   <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">cluster</span>: <span style="color:#66d9ef">ecs.Cluster</span>;
   <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">service</span>: <span style="color:#66d9ef">ecs.BaseService</span>;
   <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">imageRepository</span>: <span style="color:#66d9ef">ecr.Repository</span>;
-  
+
   <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">scope</span>: <span style="color:#66d9ef">cdk.Construct</span>, <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">props?</span>: <span style="color:#66d9ef">cdk.StackProps</span>) {
     <span style="color:#66d9ef">super</span>(<span style="color:#a6e22e">scope</span>, <span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">props</span>);
 
@@ -496,7 +506,7 @@
   }
   
   <span style="color:#a6e22e">createCodeCommitRepository() {</span>
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">codeRepository</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">codecommit</span>.<span style="color:#a6e22e">Repository</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;Repository&#39;</span>, {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">codeRepository</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">codecommit</span>.<span style="color:#a6e22e">Repository</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;CodeRepository&#39;</span>, {
       <span style="color:#a6e22e">repositoryName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;MyRepository&#39;</span>
     });
   }
@@ -508,7 +518,7 @@
       <span style="color:#a6e22e">memoryLimitMiB</span>: <span style="color:#66d9ef">1024</span>,
       <span style="color:#a6e22e">cpu</span>: <span style="color:#66d9ef">512</span>,
       <span style="color:#a6e22e">taskImageOptions</span><span style="color:#f92672">:</span> {
-        <span style="color:#a6e22e">image</span>: <span style="color:#66d9ef">ecs.ContainerImage.fromRegistry</span>(<span style="color:#e6db74">&#39;nginx:latest&#39;</span>),
+        <span style="color:#a6e22e">image</span>: <span style="color:#66d9ef">ecs.ContainerImage.fromAsset</span>(<span style="color:#e6db74">&#39;.&#39;</span>),
         <span style="color:#a6e22e">containerName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;web&#39;</span>,
       },
     });
@@ -538,14 +548,15 @@
   }
   
   <span style="color:#a6e22e">createStageSource</span>(<span style="color:#a6e22e">output</span>: <span style="color:#66d9ef">codepipeline.Artifact</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">codepipeline</span>.<span style="color:#a6e22e">StageOptions</span> {    
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">action</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">codepipelineActions</span>.<span style="color:#a6e22e">CodeCommitSourceAction</span>({
+      <span style="color:#a6e22e">actionName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;CodeCommit&#39;</span>,
+      <span style="color:#a6e22e">repository</span>: <span style="color:#66d9ef">this.codeRepository</span>,
+      <span style="color:#a6e22e">output</span>: <span style="color:#66d9ef">output</span>,
+    });
     <span style="color:#66d9ef">return</span> {
       <span style="color:#a6e22e">stageName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Source&#39;</span>,
       <span style="color:#a6e22e">actions</span><span style="color:#f92672">:</span> [
-        <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">codepipelineActions</span>.<span style="color:#a6e22e">CodeCommitSourceAction</span>({
-            <span style="color:#a6e22e">actionName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;CodeCommit&#39;</span>,
-            <span style="color:#a6e22e">repository</span>: <span style="color:#66d9ef">this.codeRepository</span>,
-            <span style="color:#a6e22e">output</span>: <span style="color:#66d9ef">output</span>,
-        })
+        <span style="color:#a6e22e">action</span>    
       ]
     };
   }
@@ -557,22 +568,25 @@
         <span style="color:#a6e22e">privileged</span>: <span style="color:#66d9ef">true</span>,
       },
       <span style="color:#a6e22e">buildSpec</span>: <span style="color:#66d9ef">codebuild.BuildSpec.fromSourceFilename</span>(<span style="color:#e6db74">&#39;buildspec.yml&#39;</span>),
-        <span style="color:#a6e22e">environmentVariables</span><span style="color:#f92672">:</span> {
-          <span style="color:#a6e22e">REPOSITORY_URI</span><span style="color:#f92672">:</span> {<span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">this.imageRepository.repositoryUri</span>},
-          <span style="color:#a6e22e">CONTAINER_NAME</span><span style="color:#f92672">:</span> {<span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;web&#34;</span>},
-        }
+      <span style="color:#a6e22e">environmentVariables</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">REPOSITORY_URI</span><span style="color:#f92672">:</span> {<span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">this.imageRepository.repositoryUri</span>},
+        <span style="color:#a6e22e">CONTAINER_NAME</span><span style="color:#f92672">:</span> {<span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;web&#34;</span>},
+      }
     });
 
     <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">imageRepository</span>.<span style="color:#a6e22e">grantPullPush</span>(<span style="color:#a6e22e">project</span>.<span style="color:#a6e22e">grantPrincipal</span>);
+    
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">action</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">codepipelineActions</span>.<span style="color:#a6e22e">CodeBuildAction</span>({
+      <span style="color:#a6e22e">actionName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ImageBuildAction&#39;</span>,
+      <span style="color:#a6e22e">input</span>: <span style="color:#66d9ef">input</span>,
+      <span style="color:#a6e22e">outputs</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">output</span>],
+      <span style="color:#a6e22e">project</span>: <span style="color:#66d9ef">project</span>,
+    });
+    
     <span style="color:#66d9ef">return</span> {
       <span style="color:#a6e22e">stageName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Build&#39;</span>,
       <span style="color:#a6e22e">actions</span><span style="color:#f92672">:</span> [
-        <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">codepipelineActions</span>.<span style="color:#a6e22e">CodeBuildAction</span>({
-            <span style="color:#a6e22e">actionName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ImageBuildAction&#39;</span>,
-            <span style="color:#a6e22e">input</span>: <span style="color:#66d9ef">input</span>,
-            <span style="color:#a6e22e">outputs</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">output</span>],
-            <span style="color:#a6e22e">project</span>: <span style="color:#66d9ef">project</span>,
-        })
+        <span style="color:#a6e22e">action</span>
       ]
     };
   }
@@ -591,9 +605,11 @@
     };
   }
 }
-</code></pre></div><p>Apply the change.</p>
+
+</code></pre></div><p><strong>STEP 2</strong> To apply the change, execute the command below.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cdk deploy
-</code></pre></div><p>Try editing the <code>src/index.html</code> to new value.</p>
+</code></pre></div><h3 id="committing-code-to-trigger-deploy">Committing Code to Trigger Deploy</h3>
+<p>Try editing the <code>src/index.html</code> to new value.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">h1</span>&gt;Hello all!&lt;/<span style="color:#f92672">h1</span>&gt;
 </code></pre></div><p>Now we commit and push the change</p>
 <pre><code>git add .
@@ -868,19 +884,19 @@ git push origin master
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/aws-cicd-cdk-workshop/js/clipboard.min.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.min.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.jquery.min.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/jquery.sticky.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/featherlight.min.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/highlight.pack.js?1605002997"></script>
+    <script src="/aws-cicd-cdk-workshop/js/clipboard.min.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.min.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.jquery.min.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/jquery.sticky.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/featherlight.min.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/highlight.pack.js?1605058824"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/aws-cicd-cdk-workshop/js/modernizr.custom-3.6.0.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/learn.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/hugo-learn.js?1605002997"></script>
+    <script src="/aws-cicd-cdk-workshop/js/modernizr.custom-3.6.0.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/learn.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/hugo-learn.js?1605058824"></script>
     
         
-            <script src="/aws-cicd-cdk-workshop/mermaid/mermaid.js?1605002997"></script>
+            <script src="/aws-cicd-cdk-workshop/mermaid/mermaid.js?1605058824"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });

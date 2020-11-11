@@ -13,7 +13,10 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/3-cleaning-up/1-cleaning-cdk-resources.html</guid>
-      <description></description>
+      <description>In this part you will remove all resources that provisioned by AWS CDK.
+STEP 1 In the terminal execute the command below. This will remove the stack that you created previously.
+cdk destroy STEP 2 Execute
+Click the orange arrow on the right hand side to continue.</description>
     </item>
     
     <item>
@@ -22,7 +25,9 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/3-cleaning-up/2-deleting-cloud9-environment.html</guid>
-      <description></description>
+      <description>In this part you will delete the AWS Cloud9 environment you created.
+STEP 1 Open the Cloud9 console.
+STEP 2 Choose the Cloud9 IDE that you created.</description>
     </item>
     
   </channel>

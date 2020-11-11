@@ -12,21 +12,21 @@
     <title>5. Creating Build Pipeline :: CI/CD using AWS CDK Workshop</title>
 
     
-    <link href="/aws-cicd-cdk-workshop/css/nucleus.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/fontawesome-all.min.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/hybrid.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/featherlight.min.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/perfect-scrollbar.min.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/auto-complete.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/atom-one-dark-reasonable.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/theme.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/hugo-theme.css?1605002997" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/nucleus.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/fontawesome-all.min.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/hybrid.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/featherlight.min.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/perfect-scrollbar.min.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/auto-complete.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/atom-one-dark-reasonable.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/theme.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/hugo-theme.css?1605058824" rel="stylesheet">
     
-    <link href="/aws-cicd-cdk-workshop/css/theme-mine.css?1605002997" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/theme-mine.css?1605058824" rel="stylesheet">
     
     
 
-    <script src="/aws-cicd-cdk-workshop/js/jquery-3.3.1.min.js?1605002997"></script>
+    <script src="/aws-cicd-cdk-workshop/js/jquery-3.3.1.min.js?1605058824"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,14 +52,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/lunr.min.js?1605002997"></script>
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/auto-complete.js?1605002997"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/lunr.min.js?1605058824"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/auto-complete.js?1605058824"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/petrabarus.github.io\/aws-cicd-cdk-workshop\/";
     
 </script>
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/search.js?1605002997"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/search.js?1605058824"></script>
 
     
   </div>
@@ -243,9 +243,9 @@
  
   
     
-      <li data-nav-id="/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html" title="4. Creating ECS Cluster" class="dd-item ">
+      <li data-nav-id="/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html" title="4. Creating ECR Container Image Repository" class="dd-item ">
         <a href="/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html">
-        4. Creating ECS Cluster
+        4. Creating ECR Container Image Repository
         
         </a>
     </li>
@@ -448,7 +448,15 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#committing-code-to-trigger-build">Committing Code to Trigger Build</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -471,9 +479,11 @@
         
 
 
-<p>Install CodePipeline and CodeBuild dependencies.</p>
-<pre><code>npm i @aws-cdk/aws-iam @aws-cdk/aws-codebuild @aws-cdk/aws-codepipeline  @aws-cdk/aws-codepipeline-actions
-</code></pre><p>Create file <code>buildspec.yml</code> in the root directory of the application.</p>
+<p>In this step, you are going to create a CI/CD pipeline where you will build a container image on new commit and store the image in our new ECR repository.</p>
+<p>AWS CodePipeline is a fully managed continuous delivery service that helps you automate your release pipelines for fast and reliable application and infrastructure updates. CodePipeline automates the build, test, and deploy phases of your release process every time there is a code change, based on the release model you define. AWS CodeBuild is a fully managed continuous integration service that compiles source code, runs tests, and produces software packages that are ready to deploy. With CodeBuild, you don’t need to provision, manage, and scale your own build servers.</p>
+<p><strong>STEP 1</strong> You are going to need to install CodePipeline and CodeBuild construct libraries. Execute command below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm i @aws-cdk/aws-codebuild @aws-cdk/aws-codepipeline  @aws-cdk/aws-codepipeline-actions
+</code></pre></div><p><strong>STEP 2</strong> Create file <code>buildspec.yml</code> in the root directory of the application. This file will serve as build definition that we are</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;0.2&#39;</span>
 <span style="color:#f92672">phases</span>:
   <span style="color:#f92672">pre_build</span>:
@@ -495,7 +505,7 @@
   <span style="color:#f92672">files</span>:
   - <span style="color:#ae81ff">imagedefinitions.json</span>
 
-</code></pre></div><p>Overwrite file <code>myapp-stack.ts</code> with this.</p>
+</code></pre></div><p><strong>STEP 3</strong> Overwrite file <code>lib/myapp-stack.ts</code> with this.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">cdk</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@aws-cdk/core&#39;</span>;
 <span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">codecommit</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@aws-cdk/aws-codecommit&#39;</span>;
 <span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">ecs</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@aws-cdk/aws-ecs&#39;</span>;
@@ -508,9 +518,9 @@
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyappStack</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Stack</span> {
   <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">codeRepository</span>: <span style="color:#66d9ef">codecommit.Repository</span>;
   <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">cluster</span>: <span style="color:#66d9ef">ecs.Cluster</span>;
-  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">service</span>: <span style="color:#66d9ef">ecs.IService</span>;
+  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">service</span>: <span style="color:#66d9ef">ecs.BaseService</span>;
   <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">imageRepository</span>: <span style="color:#66d9ef">ecr.Repository</span>;
-  
+
   <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">scope</span>: <span style="color:#66d9ef">cdk.Construct</span>, <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">props?</span>: <span style="color:#66d9ef">cdk.StackProps</span>) {
     <span style="color:#66d9ef">super</span>(<span style="color:#a6e22e">scope</span>, <span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">props</span>);
 
@@ -521,7 +531,7 @@
   }
   
   <span style="color:#a6e22e">createCodeCommitRepository() {</span>
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">codeRepository</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">codecommit</span>.<span style="color:#a6e22e">Repository</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;Repository&#39;</span>, {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">codeRepository</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">codecommit</span>.<span style="color:#a6e22e">Repository</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;CodeRepository&#39;</span>, {
       <span style="color:#a6e22e">repositoryName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;MyRepository&#39;</span>
     });
   }
@@ -562,53 +572,65 @@
   }
   
   <span style="color:#a6e22e">createStageSource</span>(<span style="color:#a6e22e">output</span>: <span style="color:#66d9ef">codepipeline.Artifact</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">codepipeline</span>.<span style="color:#a6e22e">StageOptions</span> {    
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">action</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">codepipelineActions</span>.<span style="color:#a6e22e">CodeCommitSourceAction</span>({
+      <span style="color:#a6e22e">actionName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;CodeCommit&#39;</span>,
+      <span style="color:#a6e22e">repository</span>: <span style="color:#66d9ef">this.codeRepository</span>,
+      <span style="color:#a6e22e">output</span>: <span style="color:#66d9ef">output</span>,
+    });
     <span style="color:#66d9ef">return</span> {
       <span style="color:#a6e22e">stageName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Source&#39;</span>,
       <span style="color:#a6e22e">actions</span><span style="color:#f92672">:</span> [
-        <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">codepipelineActions</span>.<span style="color:#a6e22e">CodeCommitSourceAction</span>({
-            <span style="color:#a6e22e">actionName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;CodeCommit&#39;</span>,
-            <span style="color:#a6e22e">repository</span>: <span style="color:#66d9ef">this.codeRepository</span>,
-            <span style="color:#a6e22e">output</span>: <span style="color:#66d9ef">output</span>,
-        })
+        <span style="color:#a6e22e">action</span>    
       ]
     };
   }
   
   <span style="color:#a6e22e">createStageBuild</span>(<span style="color:#a6e22e">input</span>: <span style="color:#66d9ef">codepipeline.Artifact</span>, <span style="color:#a6e22e">output</span>: <span style="color:#66d9ef">codepipeline.Artifact</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">codepipeline</span>.<span style="color:#a6e22e">StageOptions</span> {
     <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">project</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">codebuild</span>.<span style="color:#a6e22e">PipelineProject</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;ImageBuildProject&#39;</span>, {
-            <span style="color:#a6e22e">environment</span><span style="color:#f92672">:</span> {
-                <span style="color:#a6e22e">buildImage</span>: <span style="color:#66d9ef">codebuild.LinuxBuildImage.STANDARD_2_0</span>,
-                <span style="color:#a6e22e">privileged</span>: <span style="color:#66d9ef">true</span>,
-            },
-            <span style="color:#a6e22e">buildSpec</span>: <span style="color:#66d9ef">codebuild.BuildSpec.fromSourceFilename</span>(<span style="color:#e6db74">&#39;buildspec.yml&#39;</span>),
-            <span style="color:#a6e22e">environmentVariables</span><span style="color:#f92672">:</span> {
-                <span style="color:#a6e22e">REPOSITORY_URI</span><span style="color:#f92672">:</span> {<span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">this.imageRepository.repositoryUri</span>},
-                <span style="color:#a6e22e">CONTAINER_NAME</span><span style="color:#f92672">:</span> {<span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;web&#34;</span>},
-            }
-        });
+      <span style="color:#a6e22e">environment</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">buildImage</span>: <span style="color:#66d9ef">codebuild.LinuxBuildImage.STANDARD_2_0</span>,
+        <span style="color:#a6e22e">privileged</span>: <span style="color:#66d9ef">true</span>,
+      },
+      <span style="color:#a6e22e">buildSpec</span>: <span style="color:#66d9ef">codebuild.BuildSpec.fromSourceFilename</span>(<span style="color:#e6db74">&#39;buildspec.yml&#39;</span>),
+      <span style="color:#a6e22e">environmentVariables</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">REPOSITORY_URI</span><span style="color:#f92672">:</span> {<span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">this.imageRepository.repositoryUri</span>},
+        <span style="color:#a6e22e">CONTAINER_NAME</span><span style="color:#f92672">:</span> {<span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;web&#34;</span>},
+      }
+    });
 
     <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">imageRepository</span>.<span style="color:#a6e22e">grantPullPush</span>(<span style="color:#a6e22e">project</span>.<span style="color:#a6e22e">grantPrincipal</span>);
+    
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">action</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">codepipelineActions</span>.<span style="color:#a6e22e">CodeBuildAction</span>({
+      <span style="color:#a6e22e">actionName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ImageBuildAction&#39;</span>,
+      <span style="color:#a6e22e">input</span>: <span style="color:#66d9ef">input</span>,
+      <span style="color:#a6e22e">outputs</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">output</span>],
+      <span style="color:#a6e22e">project</span>: <span style="color:#66d9ef">project</span>,
+    });
+    
     <span style="color:#66d9ef">return</span> {
       <span style="color:#a6e22e">stageName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Build&#39;</span>,
       <span style="color:#a6e22e">actions</span><span style="color:#f92672">:</span> [
-        <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">codepipelineActions</span>.<span style="color:#a6e22e">CodeBuildAction</span>({
-            <span style="color:#a6e22e">actionName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ImageBuildAction&#39;</span>,
-            <span style="color:#a6e22e">input</span>: <span style="color:#66d9ef">input</span>,
-            <span style="color:#a6e22e">outputs</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">output</span>],
-            <span style="color:#a6e22e">project</span>: <span style="color:#66d9ef">project</span>,
-        })
+        <span style="color:#a6e22e">action</span>
       ]
     };
   }
 }
-
-</code></pre></div><p>Execute following line to apply the change.</p>
+</code></pre></div><p><strong>STEP 4</strong> Execute following line to apply the change.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cdk deploy
-</code></pre></div><p>Now we commit the change.</p>
+</code></pre></div><p>Input <code>y</code> on the prompt.</p>
+<p>To see the newly created pipeline, open the <a href="https://console.aws.amazon.com/codepipeline/home"><strong>CodePipeline console</strong></a>. You will see that you will have a new pipeline with 2 stage: Source and Build.</p>
+<p>You now may see the Build process fails. In the next part you will push the code that will trigger a success build.</p>
+<h3 id="committing-code-to-trigger-build">Committing Code to Trigger Build</h3>
+<p>Now you are going to trigger the build process by committing a new code.</p>
+<p><strong>STEP 1</strong> Since you haven&rsquo;t committed any new code yet, now it&rsquo;s time to push the changes to git.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git add .
 git commit -m <span style="color:#e6db74">&#34;Add build pipeline.&#34;</span>
 git push origin master
-</code></pre></div>
+</code></pre></div><p>Open the pipeline again in the CodePipeline console. You will see that a build process now is in progress.</p>
+<p>You can click on the <strong>Details</strong> in the Build stage to monitor the process.</p>
+<p>When the build process finishes, open our ECR repository again and you will see a new image has been pushed.</p>
+<p>Click the orange arrow on the right hand side to continue to final part of this workshop.</p>
+
 
 <footer class="footline">
 	
@@ -864,7 +886,7 @@ git push origin master
 	 
 	 
 		
-			<a class="nav nav-prev" href="/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html" title="4. Creating ECS Cluster"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html" title="4. Creating ECR Container Image Repository"> <i class="fa fa-chevron-left"></i></a>
 		
 		
 			<a class="nav nav-next" href="/aws-cicd-cdk-workshop/2-workshop/6-creating-deploy-pipeline.html" title="6. Creating Deploy Stage" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
@@ -877,19 +899,19 @@ git push origin master
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/aws-cicd-cdk-workshop/js/clipboard.min.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.min.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.jquery.min.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/jquery.sticky.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/featherlight.min.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/highlight.pack.js?1605002997"></script>
+    <script src="/aws-cicd-cdk-workshop/js/clipboard.min.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.min.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.jquery.min.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/jquery.sticky.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/featherlight.min.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/highlight.pack.js?1605058824"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/aws-cicd-cdk-workshop/js/modernizr.custom-3.6.0.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/learn.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/hugo-learn.js?1605002997"></script>
+    <script src="/aws-cicd-cdk-workshop/js/modernizr.custom-3.6.0.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/learn.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/hugo-learn.js?1605058824"></script>
     
         
-            <script src="/aws-cicd-cdk-workshop/mermaid/mermaid.js?1605002997"></script>
+            <script src="/aws-cicd-cdk-workshop/mermaid/mermaid.js?1605058824"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });

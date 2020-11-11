@@ -13,7 +13,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/1-setting-up-environment/1-setting-up-cloud9.html</guid>
-      <description>Now we are going to provision our AWS Cloud9 Integrated Development Environment.
+      <description>Now you are going to provision your AWS Cloud9 Integrated Development Environment.
 STEP 1 Go to AWS Cloud9 Console.
 STEP 2 Click Create environment
 STEP 3 Put &amp;ldquo;CICD-CDK-Workshop&amp;rdquo; or any name you like in the Name field. You can leave the description empty. Click Next step to proceed.
@@ -27,11 +27,11 @@ STEP 4 In the Environment settings, choose below configuration
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/1-setting-up-environment/2-environment-check-and-setup.html</guid>
-      <description>Now we are going to check our environment to make sure we can use it to do the worksho.
-Check NPM version We are going to need Node Package Manager to install CDK construct libraries in our project.
+      <description>Now you are going to check your environment to make sure you can use it to do the worksho.
+Check NPM version You are going to need Node Package Manager to install CDK construct libraries in our project.
 To check NPM version execute command below in the terminal.
 npm --version The output should look a bit similar to this.
-6.14.6 Check and Update CDK Now we need to make sure CDK is installed in our environment and update it to latest version.</description>
+6.14.6 Check and Update CDK Now you need to make sure CDK is installed in our environment and update it to latest version.</description>
     </item>
     
   </channel>

@@ -12,21 +12,21 @@
     <title>1. Setting Up AWS Cloud9 :: CI/CD using AWS CDK Workshop</title>
 
     
-    <link href="/aws-cicd-cdk-workshop/css/nucleus.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/fontawesome-all.min.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/hybrid.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/featherlight.min.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/perfect-scrollbar.min.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/auto-complete.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/atom-one-dark-reasonable.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/theme.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/hugo-theme.css?1605002997" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/nucleus.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/fontawesome-all.min.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/hybrid.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/featherlight.min.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/perfect-scrollbar.min.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/auto-complete.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/atom-one-dark-reasonable.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/theme.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/hugo-theme.css?1605058824" rel="stylesheet">
     
-    <link href="/aws-cicd-cdk-workshop/css/theme-mine.css?1605002997" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/theme-mine.css?1605058824" rel="stylesheet">
     
     
 
-    <script src="/aws-cicd-cdk-workshop/js/jquery-3.3.1.min.js?1605002997"></script>
+    <script src="/aws-cicd-cdk-workshop/js/jquery-3.3.1.min.js?1605058824"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,14 +52,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/lunr.min.js?1605002997"></script>
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/auto-complete.js?1605002997"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/lunr.min.js?1605058824"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/auto-complete.js?1605058824"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/petrabarus.github.io\/aws-cicd-cdk-workshop\/";
     
 </script>
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/search.js?1605002997"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/search.js?1605058824"></script>
 
     
   </div>
@@ -243,9 +243,9 @@
  
   
     
-      <li data-nav-id="/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html" title="4. Creating ECS Cluster" class="dd-item ">
+      <li data-nav-id="/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html" title="4. Creating ECR Container Image Repository" class="dd-item ">
         <a href="/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html">
-        4. Creating ECS Cluster
+        4. Creating ECR Container Image Repository
         
         </a>
     </li>
@@ -471,10 +471,12 @@
         
 
 
-<p>Now we are going to provision our AWS Cloud9 Integrated Development Environment.</p>
+<p>Now you are going to provision your AWS Cloud9 Integrated Development Environment.</p>
 <p><strong>STEP 1</strong> Go to <a href="https://console.aws.amazon.com/cloud9/home">AWS Cloud9 Console</a>.</p>
+<p><img src="/aws-cicd-cdk-workshop/images/content/screenshot-1-1.png" alt="screenshot-1-1"></p>
 <p><strong>STEP 2</strong> Click <a href="https://console.aws.amazon.com/cloud9/home/create"><strong>Create environment</strong></a></p>
 <p><strong>STEP 3</strong> Put &ldquo;CICD-CDK-Workshop&rdquo; or any name you like in the <strong>Name</strong> field. You can leave the description empty. Click <strong>Next step</strong> to proceed.</p>
+<p><img src="/aws-cicd-cdk-workshop/images/content/screenshot-1-2.png" alt="screenshot-1-2"></p>
 <p><strong>STEP 4</strong> In the <strong>Environment settings</strong>, choose below configuration</p>
 <ol>
 <li>&ldquo;Create a new EC2 instance for environment (direct access)&rdquo; in the <strong>Environment type</strong></li>
@@ -483,6 +485,7 @@
 </ol>
 <p>Leave everything else as default.
 Click <strong>Next step</strong> to proceed.</p>
+<p><img src="/aws-cicd-cdk-workshop/images/content/screenshot-1-3.png" alt="screenshot-1-3"></p>
 <p><strong>STEP 5</strong> In the step <strong>Review</strong>, make sure the configurations are correct. Click <strong>Create environment</strong> to proceed.</p>
 <p><strong>STEP 6</strong> Please wait for a couple of minutes while an instance of AWS Cloud9 is being set up.</p>
 <p><strong>FINAL</strong> Now the new AWS Cloud9 IDE is ready to use.</p>
@@ -756,19 +759,19 @@ Click <strong>Next step</strong> to proceed.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/aws-cicd-cdk-workshop/js/clipboard.min.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.min.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.jquery.min.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/jquery.sticky.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/featherlight.min.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/highlight.pack.js?1605002997"></script>
+    <script src="/aws-cicd-cdk-workshop/js/clipboard.min.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.min.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.jquery.min.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/jquery.sticky.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/featherlight.min.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/highlight.pack.js?1605058824"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/aws-cicd-cdk-workshop/js/modernizr.custom-3.6.0.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/learn.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/hugo-learn.js?1605002997"></script>
+    <script src="/aws-cicd-cdk-workshop/js/modernizr.custom-3.6.0.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/learn.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/hugo-learn.js?1605058824"></script>
     
         
-            <script src="/aws-cicd-cdk-workshop/mermaid/mermaid.js?1605002997"></script>
+            <script src="/aws-cicd-cdk-workshop/mermaid/mermaid.js?1605058824"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });

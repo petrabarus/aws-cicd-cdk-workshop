@@ -17,7 +17,7 @@
 mkdir myapp &amp;amp;&amp;amp; cd myapp STEP 2 initiate a new CDK application by executing command below.
 cdk init app --language typescript STEP 3 Create a new terminal by clicking on the green cross, and click New Terminal.
 STEP 4 In the new terminal, go to our app by executing this command.
-cd myapp STEP 5 We need to compile our Typescript code to Javascript everytime we create or update a Typescript file.</description>
+cd myapp STEP 5 You need to compile your Typescript code to Javascript everytime you create or update a Typescript file.</description>
     </item>
     
     <item>
@@ -26,9 +26,9 @@ cd myapp STEP 5 We need to compile our Typescript code to Javascript everytime w
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/2-workshop/2-creating-code-commit-repository-copy.html</guid>
-      <description>In this part, we are going to create an AWS CodeCommit repository. AWS CodeCommit is a fully-managed source control service that hosts secure Git-based repositories. It makes it easy for teams to collaborate on code in a secure and highly scalable ecosystem.
+      <description>In this part, you are going to create an AWS CodeCommit repository. AWS CodeCommit is a fully-managed source control service that hosts secure Git-based repositories. It makes it easy for teams to collaborate on code in a secure and highly scalable ecosystem.
 Provision AWS CodeCommit Repository STEP 1 Install AWS CodeCommit constructs for CDK by executing command below in our project directory.
-npm i @aws-cdk/aws-codecommit STEP 2 We are going to provision a new CodeCommit repository using CDK.</description>
+npm i @aws-cdk/aws-codecommit STEP 2 You are going to provision a new CodeCommit repository using CDK.</description>
     </item>
     
     <item>
@@ -37,22 +37,21 @@ npm i @aws-cdk/aws-codecommit STEP 2 We are going to provision a new CodeCommit 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/2-workshop/3-creating-ecs-cluster.html</guid>
-      <description>npm i @aws-cdk/aws-ecs @aws-cdk/aws-ecs-patterns Add 3 new files src/index.html, Dockerfile, and .dockerignore.
-src/index.html
-&amp;lt;h1&amp;gt;Hello World!&amp;lt;/h1&amp;gt; Dockerfile
-########## Simple Dockerfile for running HTML file.# To run execute# docker build -t webserver .# docker run -it --rm -d -p 8080:80 --name web webserver#########FROMnginx:latestCOPY ./src/index.html /usr/share/nginx/html/index.html.dockerignore
-cdk.out Overwrite file myapp-stack.ts with this.
-import * as cdk from &amp;#39;@aws-cdk/core&amp;#39;; import * as codecommit from &amp;#39;@aws-cdk/aws-codecommit&amp;#39;; import * as ecs from &amp;#39;@aws-cdk/aws-ecs&amp;#39;; import * as ecsPatterns from &amp;#39;@aws-cdk/aws-ecs-patterns&amp;#39;; export class MyappStack extends cdk.</description>
+      <description>In this part, you are going to deploy a simple &amp;ldquo;Hello World&amp;rdquo; application to ECS cluster. Amazon ECS is a fully managed container orchestration service.
+STEP 1 You are going to need ECS construct library and ECS Patterns L3 constructs library. ECS Patterns library provides higher-level Amazon ECS constructs which follow common architectural patterns.
+Execute command below.
+npm i @aws-cdk/aws-ecs @aws-cdk/aws-ecs-patterns STEP 2 Add Dockerfile in the project root. This will define our container that serves a &amp;ldquo;Hello World&amp;rdquo; HTML file.</description>
     </item>
     
     <item>
-      <title>4. Creating ECS Cluster</title>
+      <title>4. Creating ECR Container Image Repository</title>
       <link>https://petrabarus.github.io/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html</guid>
-      <description>npm i @aws-cdk/aws-ecr Overwrite file myapp-stack.ts with the code below.
-import * as cdk from &amp;#39;@aws-cdk/core&amp;#39;; import * as codecommit from &amp;#39;@aws-cdk/aws-codecommit&amp;#39;; import * as ecs from &amp;#39;@aws-cdk/aws-ecs&amp;#39;; import * as ecsPatterns from &amp;#39;@aws-cdk/aws-ecs-patterns&amp;#39;; export class MyappStack extends cdk.Stack { private codeRepository: codecommit.Repository; private cluster: ecs.Cluster; private service: ecs.IService; constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) { super(scope, id, props); this.createCodeCommitRepository(); this.createECSApplication(); } createCodeCommitRepository() { this.codeRepository = new codecommit.Repository(this, &amp;#39;Repository&amp;#39;, { repositoryName: &amp;#39;MyRepository&amp;#39; }); } createECSApplication() { this.</description>
+      <description>In this part you will create an ECR container image repository. Amazon Elastic Container Registry (ECR) is a fully-managed Docker container registry that makes it easy for developers to store, manage, and deploy Docker container images. Amazon ECR is integrated with Amazon Elastic Container Service (ECS), simplifying your development to production workflow.
+STEP 1 You are going to need to install ECR construct library. Execute the following command.
+npm i @aws-cdk/aws-ecr STEP 2 Overwrite file lib/myapp-stack.</description>
     </item>
     
     <item>
@@ -61,9 +60,8 @@ import * as cdk from &amp;#39;@aws-cdk/core&amp;#39;; import * as codecommit fro
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/2-workshop/5-creating-build-pipeline.html</guid>
-      <description>Install CodePipeline and CodeBuild dependencies.
-npm i @aws-cdk/aws-iam @aws-cdk/aws-codebuild @aws-cdk/aws-codepipeline @aws-cdk/aws-codepipeline-actions Create file buildspec.yml in the root directory of the application.
-version: &amp;#39;0.2&amp;#39; phases: pre_build: commands: - aws --version - $(aws ecr get-login --region ${AWS_DEFAULT_REGION} --no-include-email | sed &amp;#39;s|https://||&amp;#39;) - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7) - IMAGE_TAG=${COMMIT_HASH:=latest} build: commands: - docker build -t $REPOSITORY_URI:latest . - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG post_build: commands: - docker push $REPOSITORY_URI:latest - docker push $REPOSITORY_URI:$IMAGE_TAG - printf &amp;#34;[{\&amp;#34;name\&amp;#34;:\&amp;#34;${CONTAINER_NAME}\&amp;#34;,\&amp;#34;imageUri\&amp;#34;:\&amp;#34;${REPOSITORY_URI}:latest\&amp;#34;}]&amp;#34; &amp;gt; imagedefinitions.</description>
+      <description>In this step, you are going to create a CI/CD pipeline where you will build a container image on new commit and store the image in our new ECR repository.
+AWS CodePipeline is a fully managed continuous delivery service that helps you automate your release pipelines for fast and reliable application and infrastructure updates. CodePipeline automates the build, test, and deploy phases of your release process every time there is a code change, based on the release model you define.</description>
     </item>
     
     <item>
@@ -72,7 +70,9 @@ version: &amp;#39;0.2&amp;#39; phases: pre_build: commands: - aws --version - $(
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://petrabarus.github.io/aws-cicd-cdk-workshop/2-workshop/6-creating-deploy-pipeline.html</guid>
-      <description>import * as cdk from &amp;#39;@aws-cdk/core&amp;#39;; import * as codecommit from &amp;#39;@aws-cdk/aws-codecommit&amp;#39;; import * as ecs from &amp;#39;@aws-cdk/aws-ecs&amp;#39;; import * as ecsPatterns from &amp;#39;@aws-cdk/aws-ecs-patterns&amp;#39;; import * as ecr from &amp;#39;@aws-cdk/aws-ecr&amp;#39;; import * as codebuild from &amp;#39;@aws-cdk/aws-codebuild&amp;#39;; import * as codepipeline from &amp;#39;@aws-cdk/aws-codepipeline&amp;#39;; import * as codepipelineActions from &amp;#39;@aws-cdk/aws-codepipeline-actions&amp;#39;; export class MyappStack extends cdk.Stack { private codeRepository: codecommit.Repository; private cluster: ecs.Cluster; private service: ecs.BaseService; private imageRepository: ecr.Repository; constructor(scope: cdk.Construct, id: string, props?</description>
+      <description>In this part you are going to create a final stage of the pipeline &amp;ldquo;Deploy&amp;rdquo; where the newly created image will be deployed to the ECS cluster.
+STEP 1
+import * as cdk from &amp;#39;@aws-cdk/core&amp;#39;; import * as codecommit from &amp;#39;@aws-cdk/aws-codecommit&amp;#39;; import * as ecs from &amp;#39;@aws-cdk/aws-ecs&amp;#39;; import * as ecsPatterns from &amp;#39;@aws-cdk/aws-ecs-patterns&amp;#39;; import * as ecr from &amp;#39;@aws-cdk/aws-ecr&amp;#39;; import * as codebuild from &amp;#39;@aws-cdk/aws-codebuild&amp;#39;; import * as codepipeline from &amp;#39;@aws-cdk/aws-codepipeline&amp;#39;; import * as codepipelineActions from &amp;#39;@aws-cdk/aws-codepipeline-actions&amp;#39;; export class MyappStack extends cdk.</description>
     </item>
     
   </channel>

@@ -12,21 +12,21 @@
     <title>3. Creating ECS Cluster :: CI/CD using AWS CDK Workshop</title>
 
     
-    <link href="/aws-cicd-cdk-workshop/css/nucleus.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/fontawesome-all.min.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/hybrid.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/featherlight.min.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/perfect-scrollbar.min.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/auto-complete.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/atom-one-dark-reasonable.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/theme.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/hugo-theme.css?1605002997" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/nucleus.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/fontawesome-all.min.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/hybrid.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/featherlight.min.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/perfect-scrollbar.min.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/auto-complete.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/atom-one-dark-reasonable.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/theme.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/hugo-theme.css?1605058824" rel="stylesheet">
     
-    <link href="/aws-cicd-cdk-workshop/css/theme-mine.css?1605002997" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/theme-mine.css?1605058824" rel="stylesheet">
     
     
 
-    <script src="/aws-cicd-cdk-workshop/js/jquery-3.3.1.min.js?1605002997"></script>
+    <script src="/aws-cicd-cdk-workshop/js/jquery-3.3.1.min.js?1605058824"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,14 +52,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/lunr.min.js?1605002997"></script>
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/auto-complete.js?1605002997"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/lunr.min.js?1605058824"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/auto-complete.js?1605058824"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/petrabarus.github.io\/aws-cicd-cdk-workshop\/";
     
 </script>
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/search.js?1605002997"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/search.js?1605058824"></script>
 
     
   </div>
@@ -243,9 +243,9 @@
  
   
     
-      <li data-nav-id="/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html" title="4. Creating ECS Cluster" class="dd-item ">
+      <li data-nav-id="/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html" title="4. Creating ECR Container Image Repository" class="dd-item ">
         <a href="/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html">
-        4. Creating ECS Cluster
+        4. Creating ECR Container Image Repository
         
         </a>
     </li>
@@ -471,11 +471,11 @@
         
 
 
+<p>In this part, you are going to deploy a simple &ldquo;Hello World&rdquo; application to ECS cluster. Amazon ECS is a fully managed container orchestration service.</p>
+<p><strong>STEP 1</strong> You are going to need ECS construct library and ECS Patterns L3 constructs library. ECS Patterns library provides higher-level Amazon ECS constructs which follow common architectural patterns.</p>
+<p>Execute command below.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm i @aws-cdk/aws-ecs @aws-cdk/aws-ecs-patterns
-</code></pre></div><p>Add 3 new files <code>src/index.html</code>, <code>Dockerfile</code>, and <code>.dockerignore</code>.</p>
-<p><code>src/index.html</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">h1</span>&gt;Hello World!&lt;/<span style="color:#f92672">h1</span>&gt;
-</code></pre></div><p><code>Dockerfile</code></p>
+</code></pre></div><p><strong>STEP 2</strong> Add <code>Dockerfile</code> in the project root. This will define our container that serves a &ldquo;Hello World&rdquo; HTML file. The file will contain definition below.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#75715e">#########</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Simple Dockerfile for running HTML file.</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># To run execute</span><span style="color:#960050;background-color:#1e0010">
@@ -484,9 +484,12 @@
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e">#########</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> nginx:latest</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./src/index.html /usr/share/nginx/html/index.html<span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><p><code>.dockerignore</code></p>
+</span></code></pre></div><p><strong>STEP 3</strong> Create a new directory <code>src</code> in the project directory and create new file <code>index.html</code> in that new directory. The HTML file should contain text below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">h1</span>&gt;Hello World!&lt;/<span style="color:#f92672">h1</span>&gt;
+</code></pre></div><p><strong>STEP 4</strong> Now create a new file <code>.dockerignore</code> in the project root directory. You need this to prevent unnecessary files to be compiled in our docker container image to keep the image small. The file should look like below.</p>
 <pre><code>cdk.out
-</code></pre><p>Overwrite file <code>myapp-stack.ts</code> with this.</p>
+node_modules
+</code></pre><p><strong>STEP 5</strong>  Overwrite file <code>lib/myapp-stack.ts</code> with this.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">cdk</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@aws-cdk/core&#39;</span>;
 <span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">codecommit</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@aws-cdk/aws-codecommit&#39;</span>;
 <span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">ecs</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@aws-cdk/aws-ecs&#39;</span>;
@@ -505,7 +508,7 @@
   }
   
   <span style="color:#a6e22e">createCodeCommitRepository() {</span>
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">codeRepository</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">codecommit</span>.<span style="color:#a6e22e">Repository</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;Repository&#39;</span>, {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">codeRepository</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">codecommit</span>.<span style="color:#a6e22e">Repository</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;CodeRepository&#39;</span>, {
       <span style="color:#a6e22e">repositoryName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;MyRepository&#39;</span>
     });
   }
@@ -525,8 +528,14 @@
     <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">service</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fargateService</span>.<span style="color:#a6e22e">service</span>;
   }
 }
-</code></pre></div><pre><code>cdk deploy
-</code></pre>
+</code></pre></div><p><strong>STEP 6</strong> Now to deploy the application, execute command below.</p>
+<pre><code>cdk deploy
+</code></pre><p>In this step, the CDK will show a list of permissions change to approve. Input <code>Y</code> to approve and continue.</p>
+<p>Please wait for a while for CDK to complete the command. By the end of the command, you will see output a bit similar to below.</p>
+<p>The <code>TEXT</code> will contain the URL where you can check the application.</p>
+<p>To see the created ECS cluster, open the <a href="https://console.aws.amazon.com/ecs/home"><strong>ECS console</strong></a> and see you have new ECS cluster.</p>
+<p>Click the orange arrow on the right hand side to continue to next step.</p>
+
 
 <footer class="footline">
 	
@@ -785,7 +794,7 @@
 			<a class="nav nav-prev" href="/aws-cicd-cdk-workshop/2-workshop/2-creating-code-commit-repository-copy.html" title="2. Creating CodeCommit Repository"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html" title="4. Creating ECS Cluster" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html" title="4. Creating ECR Container Image Repository" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -795,19 +804,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/aws-cicd-cdk-workshop/js/clipboard.min.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.min.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.jquery.min.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/jquery.sticky.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/featherlight.min.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/highlight.pack.js?1605002997"></script>
+    <script src="/aws-cicd-cdk-workshop/js/clipboard.min.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.min.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.jquery.min.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/jquery.sticky.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/featherlight.min.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/highlight.pack.js?1605058824"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/aws-cicd-cdk-workshop/js/modernizr.custom-3.6.0.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/learn.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/hugo-learn.js?1605002997"></script>
+    <script src="/aws-cicd-cdk-workshop/js/modernizr.custom-3.6.0.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/learn.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/hugo-learn.js?1605058824"></script>
     
         
-            <script src="/aws-cicd-cdk-workshop/mermaid/mermaid.js?1605002997"></script>
+            <script src="/aws-cicd-cdk-workshop/mermaid/mermaid.js?1605058824"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });

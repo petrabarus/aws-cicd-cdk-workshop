@@ -9,24 +9,24 @@
 
     <link rel="icon" href="/aws-cicd-cdk-workshop/images/favicon.png" type="image/png">
 
-    <title>4. Creating ECS Cluster :: CI/CD using AWS CDK Workshop</title>
+    <title>4. Creating ECR Container Image Repository :: CI/CD using AWS CDK Workshop</title>
 
     
-    <link href="/aws-cicd-cdk-workshop/css/nucleus.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/fontawesome-all.min.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/hybrid.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/featherlight.min.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/perfect-scrollbar.min.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/auto-complete.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/atom-one-dark-reasonable.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/theme.css?1605002997" rel="stylesheet">
-    <link href="/aws-cicd-cdk-workshop/css/hugo-theme.css?1605002997" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/nucleus.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/fontawesome-all.min.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/hybrid.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/featherlight.min.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/perfect-scrollbar.min.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/auto-complete.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/atom-one-dark-reasonable.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/theme.css?1605058824" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/hugo-theme.css?1605058824" rel="stylesheet">
     
-    <link href="/aws-cicd-cdk-workshop/css/theme-mine.css?1605002997" rel="stylesheet">
+    <link href="/aws-cicd-cdk-workshop/css/theme-mine.css?1605058824" rel="stylesheet">
     
     
 
-    <script src="/aws-cicd-cdk-workshop/js/jquery-3.3.1.min.js?1605002997"></script>
+    <script src="/aws-cicd-cdk-workshop/js/jquery-3.3.1.min.js?1605058824"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -52,14 +52,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/lunr.min.js?1605002997"></script>
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/auto-complete.js?1605002997"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/lunr.min.js?1605058824"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/auto-complete.js?1605058824"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/petrabarus.github.io\/aws-cicd-cdk-workshop\/";
     
 </script>
-<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/search.js?1605002997"></script>
+<script type="text/javascript" src="/aws-cicd-cdk-workshop/js/search.js?1605058824"></script>
 
     
   </div>
@@ -243,9 +243,9 @@
  
   
     
-      <li data-nav-id="/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html" title="4. Creating ECS Cluster" class="dd-item active">
+      <li data-nav-id="/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html" title="4. Creating ECR Container Image Repository" class="dd-item active">
         <a href="/aws-cicd-cdk-workshop/2-workshop/4-creating-ecr-repository.html">
-        4. Creating ECS Cluster
+        4. Creating ECR Container Image Repository
         
         </a>
     </li>
@@ -435,7 +435,7 @@
             
           
           
-            <a href='/aws-cicd-cdk-workshop/'></a> > <a href='/aws-cicd-cdk-workshop/2-workshop.html'>Workshop</a> > 4. Creating ECS Cluster
+            <a href='/aws-cicd-cdk-workshop/'></a> > <a href='/aws-cicd-cdk-workshop/2-workshop.html'>Workshop</a> > 4. Creating ECR Container Image Repository
           
         
           
@@ -448,7 +448,15 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#pushing-new-image-to-ecr-repository">Pushing New Image to ECR Repository</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -464,34 +472,40 @@
           
             <h1>
               
-              4. Creating ECS Cluster
+              4. Creating ECR Container Image Repository
             </h1>
           
 
         
 
 
+<p>In this part you will create an ECR container image repository. Amazon Elastic Container Registry (ECR) is a fully-managed Docker container registry that makes it easy for developers to store, manage, and deploy Docker container images. Amazon ECR is integrated with Amazon Elastic Container Service (ECS), simplifying your development to production workflow.</p>
+<p><strong>STEP 1</strong> You are going to need to install ECR construct library. Execute the following command.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">npm i @aws-cdk/aws-ecr
-</code></pre></div><p>Overwrite file <code>myapp-stack.ts</code> with the code below.</p>
+</code></pre></div><p><strong>STEP 2</strong> Overwrite file <code>lib/myapp-stack.ts</code> with the code below.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-typescript" data-lang="typescript"><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">cdk</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@aws-cdk/core&#39;</span>;
 <span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">codecommit</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@aws-cdk/aws-codecommit&#39;</span>;
 <span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">ecs</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@aws-cdk/aws-ecs&#39;</span>;
 <span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">ecsPatterns</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@aws-cdk/aws-ecs-patterns&#39;</span>;
+<span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">ecr</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@aws-cdk/aws-ecr&#39;</span>;
 
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyappStack</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">Stack</span> {
   <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">codeRepository</span>: <span style="color:#66d9ef">codecommit.Repository</span>;
   <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">cluster</span>: <span style="color:#66d9ef">ecs.Cluster</span>;
-  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">service</span>: <span style="color:#66d9ef">ecs.IService</span>;
+  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">service</span>: <span style="color:#66d9ef">ecs.BaseService</span>;
+  <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">imageRepository</span>: <span style="color:#66d9ef">ecr.Repository</span>;
+
 
   <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">scope</span>: <span style="color:#66d9ef">cdk.Construct</span>, <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">props?</span>: <span style="color:#66d9ef">cdk.StackProps</span>) {
     <span style="color:#66d9ef">super</span>(<span style="color:#a6e22e">scope</span>, <span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">props</span>);
 
     <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">createCodeCommitRepository</span>();
     <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">createECSApplication</span>();
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">createECRRepository</span>();
   }
   
   <span style="color:#a6e22e">createCodeCommitRepository() {</span>
-    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">codeRepository</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">codecommit</span>.<span style="color:#a6e22e">Repository</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;Repository&#39;</span>, {
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">codeRepository</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">codecommit</span>.<span style="color:#a6e22e">Repository</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;CodeRepository&#39;</span>, {
       <span style="color:#a6e22e">repositoryName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;MyRepository&#39;</span>
     });
   }
@@ -510,9 +524,22 @@
     
     <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">service</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fargateService</span>.<span style="color:#a6e22e">service</span>;
   }
+  
+  <span style="color:#a6e22e">createECRRepository() {</span>
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">imageRepository</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ecr</span>.<span style="color:#a6e22e">Repository</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;ImageRepository&#39;</span>);
+    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">cdk</span>.<span style="color:#a6e22e">CfnOutput</span>(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#39;ImageRepositoryURI&#39;</span>, { <span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">this.imageRepository.repositoryUri</span> });
+  }
 }
-</code></pre></div><pre><code>cdk deploy
-</code></pre>
+</code></pre></div><p><strong>STEP 3</strong> To apply the changes, execute the command below.</p>
+<pre><code>cdk deploy
+</code></pre><p>When the deploy finished, you will see the URL of the new ECR repository in the output.</p>
+<p>To see the created ECR repository, visit the <a href="https://console.aws.amazon.com/ecr/home"><strong>ECR console</strong></a>. You will see a new repository created.</p>
+<p>If you click on the new repository, you will see that there is no image stored yet.</p>
+<h3 id="pushing-new-image-to-ecr-repository">Pushing New Image to ECR Repository</h3>
+<p>Now you are going to try pushing a new image to the ECR repository.</p>
+<p>Try refreshing the new ECR repository in the ECR console. Now you will see that you have a new image created.</p>
+<p>Click the orange arrow on the right hand side to continue to next step.</p>
+
 
 <footer class="footline">
 	
@@ -781,19 +808,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/aws-cicd-cdk-workshop/js/clipboard.min.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.min.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.jquery.min.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/jquery.sticky.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/featherlight.min.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/highlight.pack.js?1605002997"></script>
+    <script src="/aws-cicd-cdk-workshop/js/clipboard.min.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.min.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/perfect-scrollbar.jquery.min.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/jquery.sticky.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/featherlight.min.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/highlight.pack.js?1605058824"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/aws-cicd-cdk-workshop/js/modernizr.custom-3.6.0.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/learn.js?1605002997"></script>
-    <script src="/aws-cicd-cdk-workshop/js/hugo-learn.js?1605002997"></script>
+    <script src="/aws-cicd-cdk-workshop/js/modernizr.custom-3.6.0.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/learn.js?1605058824"></script>
+    <script src="/aws-cicd-cdk-workshop/js/hugo-learn.js?1605058824"></script>
     
         
-            <script src="/aws-cicd-cdk-workshop/mermaid/mermaid.js?1605002997"></script>
+            <script src="/aws-cicd-cdk-workshop/mermaid/mermaid.js?1605058824"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });
